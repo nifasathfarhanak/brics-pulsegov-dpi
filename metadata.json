@@ -1,0 +1,6 @@
+{
+  "name": "PulseGov — BRICS Sovereign DPI & Gemini Intelligence Hub",
+  "description": "BRICS Digital Public Infrastructure (DPI) featuring the Gemini Sovereign Intelligence Hub, real-time 33-language ministerial voice agent, multimodal vision triage, strict duplicate prevention, and zero-debt CapEx planning.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
