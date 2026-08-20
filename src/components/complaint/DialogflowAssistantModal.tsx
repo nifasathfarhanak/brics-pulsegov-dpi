@@ -152,12 +152,12 @@ export const DialogflowAssistantModal: React.FC<DialogflowAssistantModalProps> =
       {isOpen && (
         <div 
           id="dialogflow-chat-modal"
-          className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 max-h-[520px] h-[500px] bg-[#0A192F] border border-blue-500/50 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300 backdrop-blur-xl"
+          className="fixed bottom-20 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 max-h-[520px] h-[500px] bg-white border border-slate-300 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300 backdrop-blur-xl"
         >
           {/* Modal Header */}
-          <div className="bg-gradient-to-r from-blue-950 via-[#0c1e3d] to-indigo-950 p-4 border-b border-slate-800 flex items-center justify-between">
+          <div className="bg-blue-900 p-4 border-b border-blue-950 flex items-center justify-between text-white">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-2xl bg-blue-600/30 border border-blue-400/40 flex items-center justify-center text-cyan-300 shadow-inner">
+              <div className="w-9 h-9 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white shadow-inner">
                 <Bot className="w-5 h-5" />
               </div>
               <div>
@@ -167,7 +167,7 @@ export const DialogflowAssistantModal: React.FC<DialogflowAssistantModalProps> =
                   </h4>
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </div>
-                <p className="text-[10px] font-mono text-cyan-300">
+                <p className="text-[10px] font-mono text-blue-200">
                   Google Cloud Natural Language + TTS
                 </p>
               </div>
@@ -176,14 +176,14 @@ export const DialogflowAssistantModal: React.FC<DialogflowAssistantModalProps> =
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer"
+              className="p-1.5 rounded-xl text-blue-200 hover:text-white hover:bg-white/10 transition cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
           {/* Messages Feed */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#070F1E]/80 text-xs">
+          <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50 text-xs">
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -192,8 +192,8 @@ export const DialogflowAssistantModal: React.FC<DialogflowAssistantModalProps> =
                 <div
                   className={`max-w-[85%] rounded-2xl p-3 leading-relaxed ${
                     msg.sender === 'user'
-                      ? 'bg-blue-600 text-white rounded-br-none shadow-md'
-                      : 'bg-[#0f213a] text-slate-200 border border-blue-900/60 rounded-bl-none shadow-sm'
+                      ? 'bg-blue-700 text-white rounded-br-none shadow-sm'
+                      : 'bg-white text-slate-800 border border-slate-200 rounded-bl-none shadow-xs'
                   }`}
                 >
                   <p>{msg.text}</p>
@@ -211,7 +211,7 @@ export const DialogflowAssistantModal: React.FC<DialogflowAssistantModalProps> =
                         key={idx}
                         type="button"
                         onClick={() => handleSendMessage(qa)}
-                        className="text-[10px] px-2.5 py-1 rounded-full bg-blue-950/80 hover:bg-blue-900 text-cyan-300 border border-blue-800/60 hover:border-cyan-400 transition flex items-center gap-1 cursor-pointer"
+                        className="text-[10px] px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 text-blue-800 border border-blue-200 hover:border-blue-400 transition flex items-center gap-1 cursor-pointer font-medium shadow-xs"
                       >
                         <span>{qa}</span>
                         <ChevronRight className="w-3 h-3 opacity-60" />
@@ -223,8 +223,8 @@ export const DialogflowAssistantModal: React.FC<DialogflowAssistantModalProps> =
             ))}
 
             {isSending && (
-              <div className="flex items-center gap-2 text-slate-400 text-xs py-1">
-                <Bot className="w-3.5 h-3.5 text-cyan-400 animate-spin" />
+              <div className="flex items-center gap-2 text-slate-500 text-xs py-1">
+                <Bot className="w-3.5 h-3.5 text-blue-600 animate-spin" />
                 <span>Dialogflow is formulating response in {currentLanguage}...</span>
               </div>
             )}
@@ -237,19 +237,19 @@ export const DialogflowAssistantModal: React.FC<DialogflowAssistantModalProps> =
               e.preventDefault();
               handleSendMessage();
             }}
-            className="p-3 bg-[#0A192F] border-t border-slate-800 flex items-center gap-2"
+            className="p-3 bg-white border-t border-slate-200 flex items-center gap-2"
           >
             <input
               type="text"
               value={inputQuery}
               onChange={(e) => setInputQuery(e.target.value)}
               placeholder={`Ask in any language (e.g. "How to report?")...`}
-              className="flex-1 bg-[#070F1E] border border-slate-700 focus:border-cyan-400 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none"
+              className="flex-1 bg-slate-50 border border-slate-300 focus:border-blue-600 rounded-xl px-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white"
             />
             <button
               type="submit"
               disabled={!inputQuery.trim() || isSending}
-              className="p-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white shadow-md transition cursor-pointer"
+              className="p-2 rounded-xl bg-blue-700 hover:bg-blue-800 disabled:opacity-50 text-white shadow-xs transition cursor-pointer"
             >
               <Send className="w-4 h-4" />
             </button>

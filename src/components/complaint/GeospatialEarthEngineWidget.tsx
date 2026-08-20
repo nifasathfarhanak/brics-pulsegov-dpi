@@ -98,39 +98,39 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
   ];
 
   return (
-    <div id="geospatial-earth-engine-card" className="bg-[#0A192F] border border-blue-800/60 rounded-2xl p-4 sm:p-5 shadow-xl space-y-4">
+    <div id="geospatial-earth-engine-card" className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
       
       {/* Header: Track 1 & 2 Identity */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-blue-900/60 border border-blue-500/40 flex items-center justify-center text-cyan-400">
+          <div className="w-8 h-8 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-700">
             <Compass className="w-4 h-4 animate-spin-slow" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-cyan-400">
+              <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-blue-700">
                 Track 1 & 2: Geospatial & Public Data
               </span>
-              <span className="bg-blue-950 text-blue-300 text-[10px] font-mono px-2 py-0.5 rounded border border-blue-700/50">
+              <span className="bg-blue-50 text-blue-800 text-[10px] font-mono px-2 py-0.5 rounded border border-blue-200 font-semibold">
                 Google Maps + Earth Engine
               </span>
             </div>
-            <h3 className="text-base font-bold text-white tracking-tight">
+            <h3 className="text-base font-bold text-slate-900 tracking-tight">
               Interactive GPS Location & Satellite Context
             </h3>
           </div>
         </div>
 
         {/* Earth Engine Satellite Layer Switch */}
-        <div className="flex items-center gap-2 bg-slate-900/90 px-3 py-1.5 rounded-xl border border-slate-800">
-          <Satellite className={`w-4 h-4 ${isEarthEngineActive ? 'text-emerald-400 animate-pulse' : 'text-slate-400'}`} />
-          <span className="text-xs text-slate-300 font-medium">Earth Engine Layer</span>
+        <div className="flex items-center gap-2 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-200">
+          <Satellite className={`w-4 h-4 ${isEarthEngineActive ? 'text-emerald-600' : 'text-slate-400'}`} />
+          <span className="text-xs text-slate-700 font-medium">Earth Engine Layer</span>
           <button
             type="button"
             id="toggle-earth-engine-layer"
             onClick={() => setIsEarthEngineActive(!isEarthEngineActive)}
             className={`w-10 h-5 flex items-center rounded-full p-0.5 cursor-pointer transition-colors duration-200 ${
-              isEarthEngineActive ? 'bg-emerald-600' : 'bg-slate-700'
+              isEarthEngineActive ? 'bg-blue-700' : 'bg-slate-300'
             }`}
           >
             <div
@@ -143,7 +143,7 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
       </div>
 
       {/* Map Display & Pin Dropper */}
-      <div className="relative rounded-xl overflow-hidden border border-blue-900/50 bg-[#070F1E] h-64 sm:h-72 select-none group cursor-crosshair">
+      <div className="relative rounded-xl overflow-hidden border border-slate-300 bg-slate-100 h-64 sm:h-72 select-none group cursor-crosshair">
         
         {/* Map Background Layer (Realistic stylized satellite or vector grid) */}
         <div 
@@ -151,8 +151,8 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
           className="absolute inset-0 transition-all duration-300"
           style={{
             backgroundImage: isEarthEngineActive
-              ? `radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15), transparent 70%), linear-gradient(135deg, #0b1a2b 0%, #06111e 50%, #03141f 100%)`
-              : `linear-gradient(to right, #0d1b2a 1px, transparent 1px), linear-gradient(to bottom, #0d1b2a 1px, transparent 1px), #08121e`,
+              ? `radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.1), transparent 70%), linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 50%, #f8fafc 100%)`
+              : `linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px), #f8fafc`,
             backgroundSize: isEarthEngineActive ? 'cover' : '24px 24px',
           }}
         >
@@ -161,11 +161,11 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
             <svg className="absolute inset-0 w-full h-full opacity-60 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <pattern id="satelliteGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(56, 189, 248, 0.12)" strokeWidth="0.8" />
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(37, 99, 235, 0.15)" strokeWidth="0.8" />
                 </pattern>
                 <radialGradient id="sentinelHeat" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.35" />
-                  <stop offset="60%" stopColor="#0284c7" stopOpacity="0.2" />
+                  <stop offset="0%" stopColor="#10b981" stopOpacity="0.3" />
+                  <stop offset="60%" stopColor="#0284c7" stopOpacity="0.15" />
                   <stop offset="100%" stopColor="#0369a1" stopOpacity="0" />
                 </radialGradient>
               </defs>
@@ -173,11 +173,11 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
               
               {/* Raster Heat Anomaly / Water Saturation Zones */}
               <circle cx="50%" cy="50%" r="90" fill="url(#sentinelHeat)" className="animate-pulse" />
-              <path d="M 80 180 Q 200 120 340 160 T 580 140" fill="none" stroke="#38bdf8" strokeWidth="2.5" strokeDasharray="4 2" />
-              <path d="M 120 60 Q 280 200 480 90" fill="none" stroke="#10b981" strokeWidth="1.8" />
+              <path d="M 80 180 Q 200 120 340 160 T 580 140" fill="none" stroke="#2563eb" strokeWidth="2" strokeDasharray="4 2" />
+              <path d="M 120 60 Q 280 200 480 90" fill="none" stroke="#059669" strokeWidth="1.8" />
               
               {/* Satellite Scan Sweep Line */}
-              <line x1="0" y1="0" x2="100%" y2="0" stroke="rgba(56, 189, 248, 0.5)" strokeWidth="1.5">
+              <line x1="0" y1="0" x2="100%" y2="0" stroke="rgba(37, 99, 235, 0.4)" strokeWidth="1.5">
                 <animate attributeName="y1" values="0; 100%; 0" dur="8s" repeatCount="indefinite" />
                 <animate attributeName="y2" values="0; 100%; 0" dur="8s" repeatCount="indefinite" />
               </line>
@@ -189,11 +189,11 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full z-20 flex flex-col items-center pointer-events-none transition-all duration-300 animate-bounce"
             style={{ animationDuration: '2s' }}
           >
-            <div className="px-2.5 py-1 rounded-lg bg-red-600/90 text-white text-[11px] font-mono font-bold shadow-lg border border-red-400/50 flex items-center gap-1 whitespace-nowrap mb-1">
+            <div className="px-2.5 py-1 rounded-lg bg-red-600 text-white text-[11px] font-mono font-bold shadow-md border border-red-500 flex items-center gap-1 whitespace-nowrap mb-1">
               <MapPin className="w-3 h-3 text-white" />
               <span>Grievance Epicenter</span>
             </div>
-            <div className="w-7 h-7 rounded-full bg-red-600 border-2 border-white shadow-2xl flex items-center justify-center text-white">
+            <div className="w-7 h-7 rounded-full bg-red-600 border-2 border-white shadow-xl flex items-center justify-center text-white">
               <Crosshair className="w-4 h-4" />
             </div>
             <div className="w-2.5 h-2.5 bg-red-600/50 rounded-full animate-ping mt-0.5" />
@@ -201,26 +201,26 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
 
           {/* Map Top Overlay Badges */}
           <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between z-10 pointer-events-none">
-            <div className="bg-[#070F1E]/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-700 text-[11px] text-slate-200 font-mono flex items-center gap-1.5">
-              <Radio className="w-3 h-3 text-emerald-400 animate-pulse" />
+            <div className="bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-slate-200 text-[11px] text-slate-800 font-mono shadow-sm flex items-center gap-1.5 font-semibold">
+              <Radio className="w-3 h-3 text-emerald-600 animate-pulse" />
               <span>{countryName} • {regionName}</span>
             </div>
 
-            <div className="bg-[#070F1E]/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-700 text-[11px] text-cyan-300 font-mono">
+            <div className="bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-slate-200 text-[11px] text-blue-700 font-mono shadow-sm font-semibold">
               GPS: {coordinates.lat.toFixed(4)}°N, {coordinates.lng.toFixed(4)}°E (±{pinAccuracyMeters}m)
             </div>
           </div>
 
           {/* Map Bottom Hint */}
           <div className="absolute bottom-2.5 left-2.5 z-10 pointer-events-none">
-            <span className="text-[10px] bg-slate-900/90 text-slate-300 px-2 py-0.5 rounded border border-slate-700">
+            <span className="text-[10px] bg-white/95 text-slate-700 px-2 py-0.5 rounded border border-slate-200 shadow-sm font-medium">
               💡 Click anywhere on map to drop / recalibrate pin
             </span>
           </div>
 
           {/* Raster Mode Switcher Tabs (When Earth Engine is ON) */}
           {isEarthEngineActive && (
-            <div className="absolute bottom-2.5 right-2.5 z-10 flex items-center gap-1 bg-slate-950/90 p-1 rounded-lg border border-slate-800">
+            <div className="absolute bottom-2.5 right-2.5 z-10 flex items-center gap-1 bg-white/95 p-1 rounded-lg border border-slate-200 shadow-sm">
               {[
                 { id: 'satellite', label: 'True Color' },
                 { id: 'inundation', label: 'Flood Index' },
@@ -233,10 +233,10 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
                     e.stopPropagation();
                     setActiveRasterLayer(layer.id as any);
                   }}
-                  className={`text-[10px] font-mono px-2 py-0.5 rounded transition ${
+                  className={`text-[10px] font-mono px-2 py-0.5 rounded transition cursor-pointer ${
                     activeRasterLayer === layer.id
-                      ? 'bg-blue-600 text-white font-bold'
-                      : 'text-slate-400 hover:text-slate-200'
+                      ? 'bg-blue-700 text-white font-bold'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
                   {layer.label}
@@ -249,7 +249,7 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
 
       {/* Quick Location Presets Bar */}
       <div className="flex flex-wrap items-center gap-1.5 text-xs">
-        <span className="text-[11px] text-slate-400 font-medium">Quick Pin Drops:</span>
+        <span className="text-[11px] text-slate-600 font-medium">Quick Pin Drops:</span>
         {regionalPresets.map((preset, idx) => (
           <button
             key={idx}
@@ -259,7 +259,7 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
               const newLng = Number((coordinates.lng + preset.offsetLng).toFixed(4));
               fetchPublicDataContext(newLat, newLng);
             }}
-            className="text-[11px] px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-blue-900/50 text-slate-300 hover:text-white border border-slate-800 transition"
+            className="text-[11px] px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-800 border border-slate-200 transition cursor-pointer"
           >
             {preset.label}
           </button>
@@ -271,14 +271,14 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
         id="public-data-context-box"
         className={`rounded-xl p-3.5 border transition-all ${
           publicDataContext?.alertSeverity === 'critical'
-            ? 'bg-amber-950/40 border-amber-500/50 text-amber-200'
-            : 'bg-blue-950/30 border-blue-700/40 text-blue-200'
+            ? 'bg-amber-50 border-amber-300 text-amber-900'
+            : 'bg-blue-50 border-blue-200 text-blue-900'
         }`}
       >
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2">
             <div className={`p-1.5 rounded-lg ${
-              publicDataContext?.alertSeverity === 'critical' ? 'bg-amber-500/20 text-amber-400' : 'bg-blue-500/20 text-cyan-400'
+              publicDataContext?.alertSeverity === 'critical' ? 'bg-amber-100 text-amber-700' : 'bg-blue-100 text-blue-700'
             }`}>
               <CloudRain className="w-4 h-4 animate-bounce" />
             </div>
@@ -286,51 +286,51 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
               <span className="text-[10px] font-mono uppercase font-bold tracking-wider opacity-80">
                 Live Environmental Telemetry (IMD / Copernicus Open Data)
               </span>
-              <h4 className="text-xs sm:text-sm font-bold text-white mt-0.5">
+              <h4 className="text-xs sm:text-sm font-bold text-slate-900 mt-0.5">
                 {isLoadingPublicData ? 'Synchronizing weather radar coordinates...' : (publicDataContext?.alertHeadline || 'Public Data Context: Heavy Rainfall detected in this area (IMD Data)')}
               </h4>
             </div>
           </div>
 
-          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900/80 border border-slate-700 text-slate-300">
+          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white border border-slate-200 text-slate-700 font-semibold shadow-sm">
             Copernicus Sentinel-2B
           </span>
         </div>
 
         {/* Live Weather Metrics Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3 pt-2.5 border-t border-slate-800/80 text-xs">
-          <div className="bg-slate-900/60 p-2 rounded-lg border border-slate-800">
-            <div className="text-[10px] text-slate-400 flex items-center gap-1">
-              <CloudRain className="w-3 h-3 text-cyan-400" /> Rainfall Rate
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3 pt-2.5 border-t border-slate-200 text-xs">
+          <div className="bg-white p-2 rounded-lg border border-slate-200 shadow-xs">
+            <div className="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
+              <CloudRain className="w-3 h-3 text-blue-600" /> Rainfall Rate
             </div>
-            <div className="font-bold text-white font-mono mt-0.5">
+            <div className="font-bold text-slate-900 font-mono mt-0.5">
               {publicDataContext?.rainfallMmPerHour || '48.5'} mm/h
             </div>
           </div>
 
-          <div className="bg-slate-900/60 p-2 rounded-lg border border-slate-800">
-            <div className="text-[10px] text-slate-400 flex items-center gap-1">
-              <Wind className="w-3 h-3 text-emerald-400" /> Air Quality (AQI)
+          <div className="bg-white p-2 rounded-lg border border-slate-200 shadow-xs">
+            <div className="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
+              <Wind className="w-3 h-3 text-emerald-600" /> Air Quality (AQI)
             </div>
-            <div className="font-bold text-white font-mono mt-0.5">
+            <div className="font-bold text-slate-900 font-mono mt-0.5">
               {publicDataContext?.airQualityIndex || '142'} (PM2.5)
             </div>
           </div>
 
-          <div className="bg-slate-900/60 p-2 rounded-lg border border-slate-800">
-            <div className="text-[10px] text-slate-400 flex items-center gap-1">
-              <Droplets className="w-3 h-3 text-sky-400" /> Soil Moisture
+          <div className="bg-white p-2 rounded-lg border border-slate-200 shadow-xs">
+            <div className="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
+              <Droplets className="w-3 h-3 text-sky-600" /> Soil Moisture
             </div>
-            <div className="font-bold text-white font-mono mt-0.5">
+            <div className="font-bold text-slate-900 font-mono mt-0.5">
               {publicDataContext?.soilMoisturePercent || '88'}% Saturation
             </div>
           </div>
 
-          <div className="bg-slate-900/60 p-2 rounded-lg border border-slate-800">
-            <div className="text-[10px] text-slate-400 flex items-center gap-1">
-              <Thermometer className="w-3 h-3 text-amber-400" /> Surface Temp
+          <div className="bg-white p-2 rounded-lg border border-slate-200 shadow-xs">
+            <div className="text-[10px] text-slate-500 flex items-center gap-1 font-medium">
+              <Thermometer className="w-3 h-3 text-amber-600" /> Surface Temp
             </div>
-            <div className="font-bold text-white font-mono mt-0.5">
+            <div className="font-bold text-slate-900 font-mono mt-0.5">
               {publicDataContext?.surfaceTemperature || '28.4°C'}
             </div>
           </div>
@@ -338,8 +338,8 @@ export const GeospatialEarthEngineWidget: React.FC<GeospatialEarthEngineWidgetPr
 
         {/* Earth Engine Anomaly Note */}
         {publicDataContext?.earthEngineMetrics && (
-          <div className="mt-2 text-[11px] text-slate-400 flex items-center gap-1.5 font-mono">
-            <Sparkles className="w-3 h-3 text-cyan-400 shrink-0" />
+          <div className="mt-2 text-[11px] text-slate-600 flex items-center gap-1.5 font-mono">
+            <Sparkles className="w-3 h-3 text-blue-600 shrink-0" />
             <span>Earth Engine Radar: {publicDataContext.earthEngineMetrics.soilLiquefactionRisk} • Flood Inundation: {publicDataContext.earthEngineMetrics.floodInundationProbability}</span>
           </div>
         )}

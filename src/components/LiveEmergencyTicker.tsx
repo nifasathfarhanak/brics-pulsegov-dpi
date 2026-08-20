@@ -128,7 +128,7 @@ export const LiveEmergencyTicker: React.FC<LiveEmergencyTickerProps> = ({ onNavi
   return (
     <div
       id="live-emergency-ticker-ribbon"
-      className="relative bg-gradient-to-r from-red-950/90 via-slate-900 to-blue-950/90 border-y border-red-500/40 text-white px-4 py-2 text-xs select-none shadow-md z-40 transition-all"
+      className="relative bg-white border-y border-slate-200 text-slate-900 px-4 py-2 text-xs select-none shadow-xs z-40 transition-all"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -137,10 +137,10 @@ export const LiveEmergencyTicker: React.FC<LiveEmergencyTickerProps> = ({ onNavi
         <div className="flex items-center gap-2 shrink-0">
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600"></span>
           </span>
-          <div className="flex items-center gap-1.5 bg-red-900/60 border border-red-500/50 text-red-200 px-2 py-0.5 rounded font-mono font-bold tracking-wider uppercase text-[10px]">
-            <ShieldAlert className="w-3.5 h-3.5 text-red-400 animate-pulse" />
+          <div className="flex items-center gap-1.5 bg-white border border-red-300 text-red-700 px-2 py-0.5 rounded font-mono font-bold tracking-wider uppercase text-[10px] shadow-xs">
+            <ShieldAlert className="w-3.5 h-3.5 text-red-600 animate-pulse" />
             <span>{t.criticalPriorityTag || 'CRITICAL PRIORITY (9/10)'}</span>
             <span className="bg-red-600 text-white px-1 rounded text-[9px] ml-0.5">{criticalCount}</span>
           </div>
@@ -148,17 +148,17 @@ export const LiveEmergencyTicker: React.FC<LiveEmergencyTickerProps> = ({ onNavi
 
         {/* Middle Scrolling / Rotating Active Alert */}
         <div className="flex-1 overflow-hidden min-w-0 flex items-center gap-2.5">
-          <span className="bg-blue-900/60 text-blue-300 font-semibold px-2 py-0.5 rounded text-[11px] border border-blue-700/50 shrink-0">
+          <span className="bg-white text-blue-900 font-bold px-2 py-0.5 rounded text-[11px] border border-blue-200 shadow-xs shrink-0">
             {currentAlert.location}
           </span>
-          <span className="bg-slate-800 text-slate-300 px-1.5 py-0.5 rounded font-mono text-[10px] shrink-0 border border-slate-700">
+          <span className="bg-white text-slate-700 px-1.5 py-0.5 rounded font-mono text-[10px] shrink-0 border border-slate-200 shadow-xs">
             {currentAlert.domain}
           </span>
-          <p className="truncate text-slate-200 font-medium text-xs tracking-tight">
+          <p className="truncate text-slate-900 font-medium text-xs tracking-tight">
             {currentAlert.title}
           </p>
-          <span className="hidden md:inline-flex items-center text-emerald-400 bg-emerald-950/50 border border-emerald-600/40 text-[10px] px-1.5 py-0.2 rounded shrink-0">
-            <Activity className="w-3 h-3 mr-1 animate-spin" />
+          <span className="hidden md:inline-flex items-center text-emerald-800 bg-white border border-emerald-300 text-[10px] px-1.5 py-0.2 rounded shrink-0 shadow-xs font-medium">
+            <Activity className="w-3 h-3 mr-1 text-emerald-600 animate-spin" />
             {t.registeredImmediateAction || currentAlert.status}
           </span>
         </div>
@@ -169,22 +169,22 @@ export const LiveEmergencyTicker: React.FC<LiveEmergencyTickerProps> = ({ onNavi
           <button
             id="ticker-tts-listen-btn"
             onClick={handleSpeakAlert}
-            className={`p-1.5 rounded transition flex items-center gap-1 border ${
+            className={`p-1.5 rounded transition flex items-center gap-1 border shadow-xs cursor-pointer ${
               isSpeaking
-                ? 'bg-blue-600 text-white border-blue-400 animate-pulse'
-                : 'bg-slate-800/80 hover:bg-slate-700 text-slate-300 border-slate-700'
+                ? 'bg-blue-600 text-white border-blue-700 animate-pulse'
+                : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300'
             }`}
             title="Listen to Sovereign Alert Broadcast in Gemini Voice"
           >
             {isSpeaking ? (
               <>
-                <VolumeX className="w-3.5 h-3.5 text-red-300" />
-                <span className="hidden sm:inline text-[10px]">{t.speaking || 'Speaking...'}</span>
+                <VolumeX className="w-3.5 h-3.5 text-white" />
+                <span className="hidden sm:inline text-[10px] font-semibold">{t.speaking || 'Speaking...'}</span>
               </>
             ) : (
               <>
-                <Volume2 className="w-3.5 h-3.5 text-blue-300" />
-                <span className="hidden sm:inline text-[10px]">{t.geminiVoice || 'Gemini Voice'}</span>
+                <Volume2 className="w-3.5 h-3.5 text-blue-600" />
+                <span className="hidden sm:inline text-[10px] font-semibold">{t.geminiVoice || 'Gemini Voice'}</span>
               </>
             )}
           </button>
@@ -193,7 +193,7 @@ export const LiveEmergencyTicker: React.FC<LiveEmergencyTickerProps> = ({ onNavi
           <button
             id="ticker-inspect-crisis-btn"
             onClick={onNavigateToCrisis}
-            className="flex items-center gap-1 bg-red-600/80 hover:bg-red-600 text-white px-2.5 py-1 rounded font-medium text-[11px] transition shadow-sm border border-red-500/50"
+            className="flex items-center gap-1 bg-red-600 hover:bg-red-700 text-white px-2.5 py-1 rounded font-bold text-[11px] transition shadow-xs border border-red-700 cursor-pointer"
           >
             <span>{t.liveCrisisRoom || 'Live Crisis Room'}</span>
             <ChevronRight className="w-3 h-3" />

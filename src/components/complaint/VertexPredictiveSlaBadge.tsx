@@ -77,30 +77,28 @@ export const VertexPredictiveSlaBadge: React.FC<VertexPredictiveSlaBadgeProps> =
 
   return (
     <div id="vertex-ai-predictive-badge-container" className="space-y-2">
-      {/* Glowing Vertex AI Badge */}
+      {/* Vertex AI SLA Badge */}
       <div 
         onClick={() => setIsExpanded(!isExpanded)}
-        className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-950/80 via-blue-950/90 to-indigo-950/80 border border-cyan-400/50 p-4 shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_25px_rgba(6,182,212,0.3)] transition-all duration-300 cursor-pointer"
+        className="relative overflow-hidden rounded-2xl bg-blue-50/80 border border-blue-200 p-4 shadow-xs hover:border-blue-300 transition-all duration-200 cursor-pointer"
       >
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 p-0.5 shadow-md">
-              <div className="w-full h-full bg-[#070F1E] rounded-[10px] flex items-center justify-center text-cyan-300">
-                <Zap className="w-5 h-5 animate-pulse" />
-              </div>
+            <div className="w-10 h-10 rounded-xl bg-blue-700 p-0.5 shadow-sm flex items-center justify-center text-white">
+              <Zap className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono uppercase font-bold tracking-wider text-cyan-300">
+                <span className="text-[10px] font-mono uppercase font-bold tracking-wider text-blue-800">
                   Track 6: Predictive Modelling
                 </span>
-                <span className="bg-cyan-900/60 text-cyan-200 text-[10px] font-mono px-2 py-0.5 rounded border border-cyan-500/40">
+                <span className="bg-blue-100 text-blue-900 text-[10px] font-mono px-2 py-0.5 rounded border border-blue-300 font-semibold">
                   Vertex AI AutoML
                 </span>
               </div>
-              <h4 className="text-sm sm:text-base font-extrabold text-white tracking-tight flex items-center gap-2 mt-0.5">
+              <h4 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-2 mt-0.5">
                 <span>Vertex AI Prediction: Estimated Resolution Time -</span>
-                <span className="text-cyan-400 font-mono underline decoration-cyan-400/50 decoration-2">
+                <span className="text-blue-700 font-mono underline decoration-blue-500/50 decoration-2 font-bold">
                   {slaData?.slaFormatted || '48 Hours'}
                 </span>
               </h4>
@@ -108,11 +106,11 @@ export const VertexPredictiveSlaBadge: React.FC<VertexPredictiveSlaBadgeProps> =
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono font-bold px-3 py-1.5 rounded-xl bg-cyan-400/20 text-cyan-200 border border-cyan-400/40 flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="text-xs font-mono font-bold px-3 py-1.5 rounded-xl bg-white text-blue-800 border border-blue-200 shadow-xs flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               <span>{slaData?.modelConfidence || '94.6%'} Confidence</span>
             </span>
-            <span className="text-slate-400 text-xs hidden sm:inline">
+            <span className="text-slate-500 text-xs font-medium hidden sm:inline">
               {isExpanded ? 'Hide Details' : 'View Breakdown'}
             </span>
           </div>
@@ -120,20 +118,20 @@ export const VertexPredictiveSlaBadge: React.FC<VertexPredictiveSlaBadgeProps> =
 
         {/* Expanded Model Diagnostics Breakdown */}
         {isExpanded && (
-          <div className="mt-4 pt-3 border-t border-cyan-800/40 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs animate-in fade-in duration-200">
-            <div className="bg-[#070F1E] p-3 rounded-xl border border-slate-800 space-y-1">
-              <span className="text-[10px] text-slate-400 font-mono">Historical Training Benchmark:</span>
-              <p className="font-semibold text-slate-200">{slaData?.historicalBenchmarkMatches || 1420} Similar Resolved Tickets</p>
+          <div className="mt-4 pt-3 border-t border-blue-200 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs animate-in fade-in duration-200">
+            <div className="bg-white p-3 rounded-xl border border-slate-200 space-y-1 shadow-xs">
+              <span className="text-[10px] text-slate-500 font-mono">Historical Training Benchmark:</span>
+              <p className="font-semibold text-slate-900">{slaData?.historicalBenchmarkMatches || 1420} Similar Resolved Tickets</p>
             </div>
 
-            <div className="bg-[#070F1E] p-3 rounded-xl border border-slate-800 space-y-1">
-              <span className="text-[10px] text-slate-400 font-mono">Automated Crew Recommendation:</span>
-              <p className="font-semibold text-emerald-300">{slaData?.resourceAllocationSuggestion || '2 Hydraulic Engineers + 1 Unit'}</p>
+            <div className="bg-white p-3 rounded-xl border border-slate-200 space-y-1 shadow-xs">
+              <span className="text-[10px] text-slate-500 font-mono">Automated Crew Recommendation:</span>
+              <p className="font-semibold text-emerald-700">{slaData?.resourceAllocationSuggestion || '2 Hydraulic Engineers + 1 Unit'}</p>
             </div>
 
-            <div className="bg-[#070F1E] p-3 rounded-xl border border-slate-800 space-y-1">
-              <span className="text-[10px] text-slate-400 font-mono">Risk Escalation Probability:</span>
-              <p className="font-semibold text-rose-300">{slaData?.riskEscalationProbability || '14%'}</p>
+            <div className="bg-white p-3 rounded-xl border border-slate-200 space-y-1 shadow-xs">
+              <span className="text-[10px] text-slate-500 font-mono">Risk Escalation Probability:</span>
+              <p className="font-semibold text-rose-700">{slaData?.riskEscalationProbability || '14%'}</p>
             </div>
           </div>
         )}

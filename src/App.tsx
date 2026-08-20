@@ -101,7 +101,7 @@ function MainAppContent() {
   };
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#0A192F] text-slate-100 flex flex-col font-sans selection:bg-[#1E3A8A] selection:text-white">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
       {/* Session Inactivity Timeout Modal Warning */}
       <SessionTimeoutWarning />
 
@@ -268,11 +268,11 @@ function MainAppContent() {
 
       {/* 2. Ministerial Policy Chamber Modal */}
       {isPolicyDebateOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
-          <div className="bg-[#0A192F] border border-blue-500/50 rounded-3xl max-w-5xl w-full p-4 sm:p-6 my-auto shadow-2xl relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white border border-slate-200 text-slate-900 rounded-3xl max-w-5xl w-full p-4 sm:p-6 my-auto shadow-2xl relative">
             <button
               onClick={() => setIsPolicyDebateOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 cursor-pointer z-10"
+              className="absolute top-4 right-4 text-slate-600 hover:text-slate-900 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 cursor-pointer z-10 font-semibold"
             >
               ✕ Close
             </button>
@@ -290,11 +290,11 @@ function MainAppContent() {
 
       {/* 3. Semantic Duplicate Clustering Inspector Modal */}
       {isDuplicateInspectorOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
-          <div className="bg-[#0A192F] border border-purple-500/50 rounded-3xl max-w-5xl w-full p-4 sm:p-6 my-auto shadow-2xl relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white border border-slate-200 text-slate-900 rounded-3xl max-w-5xl w-full p-4 sm:p-6 my-auto shadow-2xl relative">
             <button
               onClick={() => setIsDuplicateInspectorOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 cursor-pointer z-10"
+              className="absolute top-4 right-4 text-slate-600 hover:text-slate-900 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 cursor-pointer z-10 font-semibold"
             >
               ✕ Close
             </button>
@@ -307,11 +307,11 @@ function MainAppContent() {
 
       {/* 4. Pan-India District & Ward Hierarchy Drilldown Modal */}
       {isIndiaHierarchyOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
-          <div className="bg-[#0A192F] border border-amber-500/50 rounded-3xl max-w-5xl w-full p-4 sm:p-6 my-auto shadow-2xl relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white border border-slate-200 text-slate-900 rounded-3xl max-w-5xl w-full p-4 sm:p-6 my-auto shadow-2xl relative">
             <button
               onClick={() => setIsIndiaHierarchyOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 cursor-pointer z-10"
+              className="absolute top-4 right-4 text-slate-600 hover:text-slate-900 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 cursor-pointer z-10 font-semibold"
             >
               ✕ Close
             </button>

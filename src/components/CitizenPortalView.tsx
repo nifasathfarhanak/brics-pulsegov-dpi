@@ -280,20 +280,20 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
   };
 
   return (
-    <div className="space-y-6 text-slate-100">
+    <div className="space-y-6 text-slate-900">
       {/* Top Banner & Quick Intake CTA */}
-      <div className="bg-gradient-to-r from-[#0A192F] via-[#10243E] to-[#0A192F] border border-slate-800 rounded-2xl p-6 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-cyan-300 text-xs font-semibold border border-blue-500/30">
+            <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 text-xs font-semibold border border-blue-200">
               Multilingual Citizen Voice Rail
             </span>
-            <span className="text-xs text-slate-400">Digital Public Good (DPG) Spec 1.2 • 33 Languages</span>
+            <span className="text-xs text-slate-500 font-medium">Digital Public Good (DPG) Spec 1.2 • 33 Languages</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
             Decentralized Citizen Grievance & Development Intake
           </h2>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mt-1">
             Bridging rural and underserved populations directly to municipal ministries through automatic translation, voice processing, and Gemini AI computer vision triage.
           </p>
         </div>
@@ -301,9 +301,9 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
         <button
           id="portal-open-intake-btn"
           onClick={onOpenIntakeModal}
-          className="px-5 py-3 bg-gradient-to-r from-blue-600 to-[#1E3A8A] hover:from-blue-500 hover:to-blue-700 text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-950/40 flex items-center gap-2 shrink-0 transition-all transform active:scale-95"
+          className="px-5 py-3 bg-blue-700 hover:bg-blue-800 text-white text-sm font-bold rounded-xl shadow-md flex items-center gap-2 shrink-0 transition-all transform active:scale-95 cursor-pointer"
         >
-          <Sparkles className="w-4 h-4 text-cyan-300" />
+          <Sparkles className="w-4 h-4 text-cyan-200" />
           <span>Submit Voice / Photo Request</span>
         </button>
       </div>
@@ -315,7 +315,7 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
         <div className="lg:col-span-7 space-y-4">
           
           {/* Filter Bar */}
-          <div className="bg-[#0A192F] border border-slate-800 rounded-2xl p-4 shadow-lg space-y-3">
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               {/* Search */}
               <div className="relative flex-1">
@@ -325,7 +325,7 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by keywords, translation, token ID, or location..."
-                  className="w-full bg-[#070F1E] border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -333,7 +333,7 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value as any)}
-                className="bg-[#070F1E] border border-slate-700 rounded-xl px-3 py-2 text-xs sm:text-sm text-white focus:ring-2 focus:ring-blue-500"
+                className="bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs sm:text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 font-medium"
               >
                 <option value="all">🌍 All 10 BRICS Countries</option>
                 {BRICS_COUNTRIES.map((c) => (
@@ -359,10 +359,10 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                 <button
                   key={sector.id}
                   onClick={() => setSelectedSector(sector.id)}
-                  className={`text-xs px-2.5 py-1 rounded-lg whitespace-nowrap transition-all ${
+                  className={`text-xs px-2.5 py-1 rounded-lg whitespace-nowrap transition-all cursor-pointer ${
                     selectedSector === sector.id
-                      ? 'bg-blue-600 text-white font-bold shadow-sm'
-                      : 'bg-[#070F1E] text-slate-400 hover:text-white hover:bg-slate-800 border border-slate-800'
+                      ? 'bg-blue-700 text-white font-bold shadow-sm'
+                      : 'bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
                   }`}
                 >
                   {sector.label}
@@ -379,31 +379,31 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                 return (
                   <div
                     key={report.id}
-                    className="bg-[#0A192F] border border-slate-800 hover:border-blue-500/60 rounded-2xl p-4 sm:p-5 shadow-lg transition-all space-y-3"
+                    className="bg-white border border-slate-200 hover:border-blue-300 rounded-2xl p-4 sm:p-5 shadow-sm transition-all space-y-3"
                   >
                     {/* Card Top: Region, Country, Token, Urgency */}
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div className="flex items-center gap-2.5">
                         <span className="text-2xl">{country?.flag}</span>
                         <div>
-                          <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                          <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
                             {report.regionName}
-                            <span className="text-[10px] font-mono font-normal px-2 py-0.5 rounded bg-[#070F1E] text-cyan-300 border border-slate-700">
+                            <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 text-blue-700 border border-slate-200">
                               #{report.token}
                             </span>
                             <button
                               onClick={() => handleCopy(report.token)}
-                              className="text-[10px] text-slate-400 hover:text-white"
+                              className="text-[10px] text-slate-400 hover:text-slate-700 cursor-pointer"
                               title="Copy Token"
                             >
-                              {copiedToken === report.token ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                              {copiedToken === report.token ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
                             </button>
                           </h4>
-                          <div className="text-[11px] text-slate-400 flex items-center gap-2 mt-0.5">
+                          <div className="text-[11px] text-slate-500 flex items-center gap-2 mt-0.5">
                             <span>{report.citizenNameOrAnon}</span>
                             <span>•</span>
-                            <span className="flex items-center gap-1">
-                              <Languages className="w-3 h-3 text-cyan-400" />
+                            <span className="flex items-center gap-1 font-medium text-slate-700">
+                              <Languages className="w-3 h-3 text-blue-600" />
                               {report.language}
                             </span>
                             <span>•</span>
@@ -418,50 +418,50 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                       <div className="flex items-center gap-1.5">
                         <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${
                           report.urgencyScore >= 9
-                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30'
-                            : 'bg-blue-500/20 text-cyan-300 border border-blue-500/30'
+                            ? 'bg-rose-50 text-rose-700 border border-rose-200'
+                            : 'bg-blue-50 text-blue-700 border border-blue-200'
                         }`}>
                           Priority: {report.urgencyScore}/10 ({report.severityLevel})
                         </span>
-                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 flex items-center gap-1">
-                          <CheckCircle2 className="w-3 h-3" />
+                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 text-emerald-600" />
                           {report.status}
                         </span>
                       </div>
                     </div>
 
                     {/* Original Dialect Quote */}
-                    <div className="bg-[#070F1E] rounded-xl p-3 border border-slate-800">
-                      <div className="text-[11px] font-semibold text-slate-400 mb-1 flex items-center gap-1">
-                        <Volume2 className="w-3 h-3 text-cyan-400" />
+                    <div className="bg-slate-50 rounded-xl p-3 border border-slate-200">
+                      <div className="text-[11px] font-semibold text-slate-600 mb-1 flex items-center gap-1">
+                        <Volume2 className="w-3 h-3 text-blue-600" />
                         Original Native Submission:
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-100 font-serif italic">
+                      <p className="text-xs sm:text-sm text-slate-800 font-serif italic">
                         "{report.originalText}"
                       </p>
                       
                       {report.englishTranslation && report.language !== 'English' && (
-                        <div className="mt-2 pt-2 border-t border-slate-800 text-xs text-slate-200 font-sans">
-                          <strong className="text-slate-400 font-medium">English Translation:</strong> "{report.englishTranslation}"
+                        <div className="mt-2 pt-2 border-t border-slate-200 text-xs text-slate-700 font-sans">
+                          <strong className="text-slate-600 font-medium">English Translation:</strong> "{report.englishTranslation}"
                         </div>
                       )}
                     </div>
 
                     {/* Transparent Destination Routing Box */}
-                    <div className="bg-[#0B1A35] p-2.5 rounded-lg border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-                      <div className="flex items-center gap-1.5 text-slate-400">
-                        <MapPin className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+                    <div className="bg-blue-50/80 p-2.5 rounded-lg border border-blue-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                      <div className="flex items-center gap-1.5 text-slate-700">
+                        <MapPin className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                         <span><strong>Routed to:</strong> {report.category} Municipal Works & Regional Triage</span>
                       </div>
-                      <div className="text-emerald-400 font-mono text-[11px]">
+                      <div className="text-emerald-700 font-mono text-[11px] font-semibold">
                         Target SLA: 14 Days (48h Field Triage)
                       </div>
                     </div>
 
                     {/* Image Attachment & Computer Vision Analysis */}
                     {report.hasPhoto && report.imageUrl && (
-                      <div className="flex flex-col sm:flex-row items-start gap-3 bg-[#070F1E] p-3 rounded-xl border border-slate-800">
-                        <div className="w-full sm:w-28 h-20 rounded-lg overflow-hidden shrink-0 border border-slate-700 bg-[#0A192F]">
+                      <div className="flex flex-col sm:flex-row items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                        <div className="w-full sm:w-28 h-20 rounded-lg overflow-hidden shrink-0 border border-slate-300 bg-white">
                           <img
                             src={report.imageUrl}
                             alt="Damage evidence"
@@ -469,11 +469,11 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                           />
                         </div>
                         <div className="space-y-1">
-                          <span className="text-[11px] font-bold text-cyan-400 flex items-center gap-1">
+                          <span className="text-[11px] font-bold text-blue-700 flex items-center gap-1">
                             <Sparkles className="w-3 h-3" />
                             Gemini Vision Damage Inspector:
                           </span>
-                          <p className="text-xs text-slate-300 leading-relaxed">
+                          <p className="text-xs text-slate-700 leading-relaxed">
                             {report.imageAnalysis || "Visible physical damage confirmed. Structural deficit logged into sovereign DPI prioritization pipeline."}
                           </p>
                         </div>
@@ -483,25 +483,25 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                     {/* Key Issues Identified Chips & Upvote Action */}
                     <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
                       <div className="flex flex-wrap items-center gap-1.5">
-                        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-500/20 text-cyan-300 border border-blue-500/30">
+                        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-blue-50 text-blue-800 border border-blue-200">
                           {report.category}
                         </span>
                         {report.keyIssues?.map((issue, i) => (
-                          <span key={i} className="text-[10px] px-2 py-0.5 rounded-md bg-[#070F1E] text-slate-300 border border-slate-800">
+                          <span key={i} className="text-[10px] px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200">
                             {issue}
                           </span>
                         ))}
                       </div>
 
                       <div className="flex items-center gap-3">
-                        <span className="text-xs text-slate-400">
-                          Est. Impact: <strong className="text-white">{report.estimatedAffectedPop?.toLocaleString()}</strong> citizens
+                        <span className="text-xs text-slate-600">
+                          Est. Impact: <strong className="text-slate-900">{report.estimatedAffectedPop?.toLocaleString()}</strong> citizens
                         </span>
                         <button
                           onClick={() => onUpvoteReport(report.id)}
-                          className="px-3 py-1 rounded-lg bg-[#070F1E] hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-white flex items-center gap-1.5 transition-all active:scale-95"
+                          className="px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 border border-slate-300 text-xs font-semibold text-slate-800 flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer"
                         >
-                          <ThumbsUp className="w-3.5 h-3.5 text-cyan-400" />
+                          <ThumbsUp className="w-3.5 h-3.5 text-blue-600" />
                           <span>{report.upvotes}</span>
                         </button>
                       </div>
@@ -510,7 +510,7 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                 );
               })
             ) : (
-              <div className="bg-[#0A192F] border border-slate-800 rounded-2xl p-8 text-center text-slate-400">
+              <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center text-slate-500 shadow-sm">
                 No citizen reports match the current filters.
               </div>
             )}
@@ -519,39 +519,39 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
 
         {/* Right Column: WhatsApp / USSD Low-Bandwidth DPI Chatbot Simulator (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-[#0A192F] border border-slate-800 rounded-2xl shadow-xl overflow-hidden flex flex-col h-[700px]">
+          <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden flex flex-col h-[700px]">
             {/* Simulator Header styled like WhatsApp / DPI messaging window */}
-            <div className="bg-[#08121E] text-white p-3.5 flex items-center justify-between border-b border-emerald-900/60">
+            <div className="bg-emerald-800 text-white p-3.5 flex items-center justify-between border-b border-emerald-900">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 rounded-full bg-emerald-700 flex items-center justify-center text-emerald-200 shadow">
+                <div className="w-9 h-9 rounded-full bg-emerald-900 flex items-center justify-center text-white shadow">
                   <Smartphone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-xs sm:text-sm font-bold flex items-center gap-1.5 text-emerald-200">
+                  <h3 className="text-xs sm:text-sm font-bold flex items-center gap-1.5 text-white">
                     <span>BRICS PulseGov DPI Bot</span>
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
                   </h3>
-                  <span className="text-[10px] text-emerald-400 font-mono">
+                  <span className="text-[10px] text-emerald-200 font-mono">
                     WhatsApp DPI + USSD *99*6# • 33 BRICS Languages
                   </span>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono border border-emerald-500/30">
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/60 text-emerald-100 font-mono border border-emerald-700">
                   ● Online
                 </span>
               </div>
             </div>
 
             {/* Quick 1-Click Dialect Prompts Bar */}
-            <div className="bg-[#060D17] px-3 py-2 border-b border-slate-800 overflow-x-auto flex items-center gap-1.5 scrollbar-thin">
-              <span className="text-[10px] text-cyan-400 font-semibold whitespace-nowrap">Try Preset:</span>
+            <div className="bg-slate-50 px-3 py-2 border-b border-slate-200 overflow-x-auto flex items-center gap-1.5 scrollbar-thin">
+              <span className="text-[10px] text-slate-600 font-bold whitespace-nowrap">Try Preset:</span>
               {QUICK_BOT_PROMPTS.map((p, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleSendChatMessage(undefined, p.text)}
                   disabled={isBotTyping}
-                  className="text-[10px] px-2 py-1 rounded-lg bg-[#0A192F] hover:bg-blue-900/60 text-slate-300 hover:text-white border border-slate-700 whitespace-nowrap transition-all active:scale-95 disabled:opacity-50"
+                  className="text-[10px] px-2 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-300 whitespace-nowrap transition-all active:scale-95 disabled:opacity-50 cursor-pointer"
                 >
                   {p.label}
                 </button>
@@ -559,22 +559,22 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
             </div>
 
             {/* Chat Body */}
-            <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#040A14]">
+            <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-[#F4F7F6]">
               {chatMessages.map((msg, index) => (
                 <div
                   key={index}
                   className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
                 >
                   <div
-                    className={`max-w-[88%] rounded-2xl p-3 text-xs leading-relaxed shadow-md ${
+                    className={`max-w-[88%] rounded-2xl p-3 text-xs leading-relaxed shadow-sm ${
                       msg.sender === 'user'
-                        ? 'bg-emerald-700 text-white rounded-tr-none'
-                        : 'bg-[#0E2038] text-slate-100 rounded-tl-none border border-slate-700'
+                        ? 'bg-blue-700 text-white rounded-tr-none'
+                        : 'bg-white text-slate-800 rounded-tl-none border border-slate-200'
                     }`}
                   >
                     {/* If user attached photo */}
                     {msg.imageUrl && (
-                      <div className="mb-2 rounded-lg overflow-hidden max-h-36 border border-emerald-600/40">
+                      <div className="mb-2 rounded-lg overflow-hidden max-h-36 border border-slate-300 bg-white">
                         <img src={msg.imageUrl} alt="Attached damage" className="w-full h-full object-cover" />
                       </div>
                     )}
@@ -583,61 +583,61 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
 
                     {/* Rich Bot Confirmation Card */}
                     {msg.sender === 'bot' && msg.token && (
-                      <div className="mt-2.5 pt-2.5 border-t border-slate-700 space-y-2 bg-[#081528] -mx-2 -mb-1 p-2.5 rounded-xl">
+                      <div className="mt-2.5 pt-2.5 border-t border-slate-200 space-y-2 bg-slate-50 -mx-2 -mb-1 p-2.5 rounded-xl text-slate-800">
                         <div className="flex items-center justify-between">
-                          <span className="text-[11px] font-mono font-bold text-cyan-300">
+                          <span className="text-[11px] font-mono font-bold text-blue-700">
                             Token: #{msg.token}
                           </span>
                           <button
                             onClick={() => handleCopy(msg.token!)}
-                            className="text-[10px] text-cyan-400 hover:text-white flex items-center gap-1 bg-[#0A192F] px-1.5 py-0.5 rounded border border-slate-700"
+                            className="text-[10px] text-blue-700 hover:text-blue-900 flex items-center gap-1 bg-white px-1.5 py-0.5 rounded border border-slate-300 cursor-pointer"
                           >
-                            {copiedToken === msg.token ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                            {copiedToken === msg.token ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
                             <span>{copiedToken === msg.token ? 'Copied' : 'Copy'}</span>
                           </button>
                         </div>
 
                         {msg.category && (
                           <div className="flex flex-wrap items-center gap-1 text-[10px]">
-                            <span className="px-1.5 py-0.5 rounded bg-blue-900/60 text-cyan-300 font-semibold border border-blue-700/40">
+                            <span className="px-1.5 py-0.5 rounded bg-blue-100 text-blue-800 font-semibold border border-blue-200">
                               {msg.category}
                             </span>
-                            <span className="px-1.5 py-0.5 rounded bg-rose-900/40 text-rose-300 border border-rose-800/40">
+                            <span className="px-1.5 py-0.5 rounded bg-rose-100 text-rose-800 border border-rose-200 font-medium">
                               Priority: {msg.urgencyScore}/10
                             </span>
-                            <span className="px-1.5 py-0.5 rounded bg-sky-900/40 text-sky-300 border border-sky-800/40">
+                            <span className="px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-200">
                               Target SLA: {msg.slaDays || 7} Days
                             </span>
                           </div>
                         )}
 
                         {msg.department && (
-                          <div className="text-[10px] text-slate-300">
+                          <div className="text-[10px] text-slate-600">
                             <strong>Routing:</strong> {msg.department}
                           </div>
                         )}
 
                         {msg.reassurance && (
-                          <div className="text-[11px] text-emerald-200 font-serif italic bg-[#040E1B] p-1.5 rounded border border-emerald-900/50">
+                          <div className="text-[11px] text-emerald-800 font-serif italic bg-emerald-50 p-1.5 rounded border border-emerald-200">
                             "{msg.reassurance}"
                           </div>
                         )}
 
-                        <div className="text-[10px] text-emerald-400 flex items-center gap-1">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                        <div className="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                           <span>Synced with Live Sovereign Public Ledger</span>
                         </div>
                       </div>
                     )}
 
-                    <span className="text-[9px] opacity-60 text-right block mt-1">{msg.time}</span>
+                    <span className={`text-[9px] block mt-1 text-right ${msg.sender === 'user' ? 'text-blue-100' : 'text-slate-400'}`}>{msg.time}</span>
                   </div>
                 </div>
               ))}
 
               {isBotTyping && (
-                <div className="flex items-center gap-2 text-xs text-cyan-400 italic bg-[#0E2038] px-3 py-2 rounded-xl w-fit border border-slate-700">
-                  <Bot className="w-4 h-4 animate-spin" />
+                <div className="flex items-center gap-2 text-xs text-blue-700 italic bg-white px-3 py-2 rounded-xl w-fit border border-slate-200 shadow-sm">
+                  <Bot className="w-4 h-4 animate-spin text-blue-600" />
                   <span>Gemini Sovereign DPI processing & translating native dialect...</span>
                 </div>
               )}
@@ -647,15 +647,15 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
 
             {/* Selected Image Preview if any */}
             {botSelectedImage && (
-              <div className="px-3 py-2 bg-[#08121E] border-t border-slate-800 flex items-center justify-between text-xs text-slate-200">
+              <div className="px-3 py-2 bg-slate-100 border-t border-slate-200 flex items-center justify-between text-xs text-slate-800">
                 <span className="flex items-center gap-1.5">
-                  <ImageIcon className="w-4 h-4 text-cyan-400" />
+                  <ImageIcon className="w-4 h-4 text-blue-600" />
                   Photo evidence attached
                 </span>
                 <button
                   type="button"
                   onClick={() => setBotSelectedImage(null)}
-                  className="text-rose-400 hover:text-rose-300 text-[11px]"
+                  className="text-rose-600 hover:text-rose-700 text-[11px] font-semibold cursor-pointer"
                 >
                   Remove
                 </button>
@@ -664,15 +664,15 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
 
             {/* Audio Recording Active Bar */}
             {isRecordingBotAudio && (
-              <div className="px-3 py-2 bg-rose-950/60 border-t border-rose-800 flex items-center justify-between text-xs text-rose-200">
+              <div className="px-3 py-2 bg-rose-50 border-t border-rose-200 flex items-center justify-between text-xs text-rose-800">
                 <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                  <span className="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span>
                   Recording Voice Memo ({botAudioSeconds}s)...
                 </span>
                 <button
                   type="button"
                   onClick={handleBotStopVoice}
-                  className="px-2 py-0.5 bg-rose-600 hover:bg-rose-500 text-white rounded text-[11px] font-bold"
+                  className="px-2 py-0.5 bg-rose-600 hover:bg-rose-700 text-white rounded text-[11px] font-bold cursor-pointer"
                 >
                   Done
                 </button>
@@ -680,7 +680,7 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
             )}
 
             {/* Chat Input & Media Actions */}
-            <form onSubmit={(e) => handleSendChatMessage(e)} className="p-3 bg-[#08121E] border-t border-slate-800 flex items-center gap-2">
+            <form onSubmit={(e) => handleSendChatMessage(e)} className="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
               <input
                 type="file"
                 ref={botFileInputRef}
@@ -692,7 +692,7 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
               <button
                 type="button"
                 onClick={() => botFileInputRef.current?.click()}
-                className="p-2 text-cyan-400 hover:text-white hover:bg-slate-800 rounded-xl transition-all"
+                className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition-all cursor-pointer"
                 title="Attach Photo"
               >
                 <ImageIcon className="w-4 h-4" />
@@ -702,7 +702,7 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                 <button
                   type="button"
                   onClick={handleBotStartVoice}
-                  className="p-2 text-cyan-400 hover:text-white hover:bg-slate-800 rounded-xl transition-all"
+                  className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-xl transition-all cursor-pointer"
                   title="Record Voice Note"
                 >
                   <Volume2 className="w-4 h-4" />
@@ -711,10 +711,10 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                 <button
                   type="button"
                   onClick={handleBotStopVoice}
-                  className="p-2 text-rose-400 hover:text-rose-300 bg-rose-900/40 rounded-xl transition-all"
+                  className="p-2 text-rose-600 hover:text-rose-700 bg-rose-100 rounded-xl transition-all cursor-pointer"
                   title="Stop Recording"
                 >
-                  <Square className="w-4 h-4 fill-rose-400" />
+                  <Square className="w-4 h-4 fill-rose-600" />
                 </button>
               )}
 
@@ -723,12 +723,12 @@ export const CitizenPortalView: React.FC<CitizenPortalViewProps> = ({
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
                 placeholder="Message DPI Bot in any of 33 languages..."
-                className="flex-1 bg-[#040A14] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                className="flex-1 bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500"
               />
               <button
                 type="submit"
                 disabled={(!chatInput.trim() && !botSelectedImage) || isBotTyping}
-                className="p-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-50 active:scale-95"
+                className="p-2 bg-blue-700 hover:bg-blue-800 text-white rounded-xl text-xs font-bold transition-all disabled:opacity-50 active:scale-95 cursor-pointer"
               >
                 <Send className="w-4 h-4" />
               </button>

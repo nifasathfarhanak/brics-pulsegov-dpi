@@ -446,7 +446,7 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
           <button
             type="button"
             onClick={() => setSubmittedReport(null)}
-            className="flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700 px-3.5 py-2 rounded-xl border border-slate-700 transition"
+            className="flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-300 shadow-sm transition cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Lodge Another Grievance</span>
@@ -456,15 +456,15 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
             <button
               type="button"
               onClick={() => window.print()}
-              className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700 px-3 py-2 rounded-xl border border-slate-700 transition"
+              className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 px-3 py-2 rounded-xl border border-slate-300 shadow-sm transition cursor-pointer"
             >
-              <Printer className="w-4 h-4 text-cyan-400" />
+              <Printer className="w-4 h-4 text-blue-600" />
               <span>Print Acknowledgment</span>
             </button>
             <button
               type="button"
               onClick={onNavigateToFeed}
-              className="flex items-center gap-1.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-xl shadow-md transition"
+              className="flex items-center gap-1.5 text-xs font-bold text-white bg-blue-700 hover:bg-blue-800 px-4 py-2 rounded-xl shadow-md transition cursor-pointer"
             >
               <span>View Public Ledger</span>
               <ChevronRight className="w-4 h-4" />
@@ -473,41 +473,37 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
         </div>
 
         {/* Official Sovereign Certificate Container */}
-        <div className="bg-[#0A192F] border-2 border-cyan-500/40 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
+        <div className="bg-white border-2 border-blue-600/30 rounded-3xl p-6 sm:p-10 shadow-lg space-y-8 relative overflow-hidden">
           
-          {/* Subtle Background Guilloche / Security Pattern */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
-
           {/* Official Document Header */}
-          <div className="border-b-2 border-slate-700/80 pb-6 text-center space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold uppercase tracking-wider">
-              <CheckCircle2 className="w-3.5 h-3.5" />
+          <div className="border-b-2 border-slate-200 pb-6 text-center space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-mono font-bold uppercase tracking-wider">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
               <span>Official Government Redressal Acknowledgment</span>
             </div>
             
             <div className="flex items-center justify-center gap-3">
               <span className="text-2xl sm:text-3xl">🏛️</span>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 BRICS Sovereign Grievance Certificate
               </h1>
             </div>
             
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto">
+            <p className="text-xs sm:text-sm text-slate-600 max-w-2xl mx-auto">
               This grievance has been cryptographically recorded in the decentralized Digital Public Infrastructure ledger and queued for immediate ministerial dispatch.
             </p>
           </div>
 
           {/* Primary Reference Token Banner */}
-          <div className="bg-[#070F1E] border border-cyan-500/50 rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-inner">
+          <div className="bg-slate-50 border border-blue-200 rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
             <div className="space-y-1 text-center md:text-left">
-              <span className="text-[11px] font-mono font-semibold uppercase tracking-widest text-slate-400">
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-widest text-slate-500">
                 Official Grievance Tracking Token (SHA-256)
               </span>
-              <div className="text-2xl sm:text-3xl font-mono font-extrabold text-cyan-400 tracking-wider">
+              <div className="text-2xl sm:text-3xl font-mono font-extrabold text-blue-700 tracking-wider">
                 {submittedReport.token}
               </div>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-600">
                 Quote this token in all future correspondence or enter it in the Status Tracking Console.
               </p>
             </div>
@@ -519,9 +515,9 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                   navigator.clipboard.writeText(submittedReport.token);
                   alert(`Token ${submittedReport.token} copied to clipboard!`);
                 }}
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs border border-slate-300 shadow-sm transition flex items-center justify-center gap-2 cursor-pointer"
               >
-                <Copy className="w-4 h-4 text-cyan-400" />
+                <Copy className="w-4 h-4 text-blue-600" />
                 <span>Copy Token</span>
               </button>
 
@@ -544,7 +540,7 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                     targetSlaHours: 48,
                     elapsedHours: 0.1,
                     statusBadge: 'AI-Verified & Streamed',
-                    statusColor: 'text-cyan-400 bg-cyan-950/80 border-cyan-500/50',
+                    statusColor: 'text-blue-800 bg-blue-50 border-blue-300',
                     events: [
                       { stage: 'Grievance Lodged & Cryptographically Signed', timestamp: 'Just now', desc: 'Securely recorded in Cloud Firestore ledger.', completed: true },
                       { stage: 'Vertex AI & BigQuery Ingest', timestamp: 'Just now', desc: 'Dispatched to regional engineering dashboard.', completed: true },
@@ -554,7 +550,7 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                   });
                   setSubmittedReport(null);
                 }}
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Clock className="w-4 h-4" />
                 <span>Track Live Status</span>
@@ -564,58 +560,58 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
 
           {/* Formally Structured 4-Cell Telemetry Matrix */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-            <div className="bg-[#070F1E]/90 p-4 rounded-xl border border-slate-800 space-y-1">
-              <span className="text-slate-400 font-mono text-[10px] uppercase">Jurisdiction & GPS:</span>
-              <p className="font-bold text-white text-sm">{submittedReport.regionName}, {currentCountry.name} {currentCountry.flag}</p>
-              <p className="text-[11px] font-mono text-cyan-400">{coordinates.lat.toFixed(4)}°N, {coordinates.lng.toFixed(4)}°E</p>
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+              <span className="text-slate-500 font-mono text-[10px] uppercase">Jurisdiction & GPS:</span>
+              <p className="font-bold text-slate-900 text-sm">{submittedReport.regionName}, {currentCountry.name} {currentCountry.flag}</p>
+              <p className="text-[11px] font-mono text-blue-700">{coordinates.lat.toFixed(4)}°N, {coordinates.lng.toFixed(4)}°E</p>
             </div>
 
-            <div className="bg-[#070F1E]/90 p-4 rounded-xl border border-slate-800 space-y-1">
-              <span className="text-slate-400 font-mono text-[10px] uppercase">Infrastructure Sector:</span>
-              <p className="font-bold text-sky-300 text-sm">{submittedReport.category}</p>
-              <p className="text-[11px] text-slate-400">ISO-37120 Certified Metric</p>
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+              <span className="text-slate-500 font-mono text-[10px] uppercase">Infrastructure Sector:</span>
+              <p className="font-bold text-blue-800 text-sm">{submittedReport.category}</p>
+              <p className="text-[11px] text-slate-500">ISO-37120 Certified Metric</p>
             </div>
 
-            <div className="bg-[#070F1E]/90 p-4 rounded-xl border border-slate-800 space-y-1">
-              <span className="text-slate-400 font-mono text-[10px] uppercase">Target Resolution SLA:</span>
-              <p className="font-bold text-emerald-400 text-sm flex items-center gap-1.5">
-                <Clock className="w-4 h-4" /> 48 Hours Guaranteed
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+              <span className="text-slate-500 font-mono text-[10px] uppercase">Target Resolution SLA:</span>
+              <p className="font-bold text-emerald-700 text-sm flex items-center gap-1.5">
+                <Clock className="w-4 h-4 text-emerald-600" /> 48 Hours Guaranteed
               </p>
-              <p className="text-[11px] text-slate-400">Field Unit Dispatched</p>
+              <p className="text-[11px] text-slate-500">Field Unit Dispatched</p>
             </div>
 
-            <div className="bg-[#070F1E]/90 p-4 rounded-xl border border-slate-800 space-y-1">
-              <span className="text-slate-400 font-mono text-[10px] uppercase">Filing Identity:</span>
-              <p className="font-bold text-white text-sm truncate">{isAnonymous ? 'Protected Anonymous Whistleblower' : (citizenName || 'Verified Citizen')}</p>
-              <p className="text-[11px] text-slate-400">{mobileNumber ? `SMS: ${mobileNumber}` : 'Web Portal Token'}</p>
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-1">
+              <span className="text-slate-500 font-mono text-[10px] uppercase">Filing Identity:</span>
+              <p className="font-bold text-slate-900 text-sm truncate">{isAnonymous ? 'Protected Anonymous Whistleblower' : (citizenName || 'Verified Citizen')}</p>
+              <p className="text-[11px] text-slate-500">{mobileNumber ? `SMS: ${mobileNumber}` : 'Web Portal Token'}</p>
             </div>
           </div>
 
           {/* Citizen Native Audio Reassurance Player */}
-          <div className="bg-[#070F1E] border border-cyan-800/40 rounded-2xl p-5 space-y-3">
+          <div className="bg-slate-50 border border-blue-200 rounded-2xl p-5 space-y-3">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-              <div className="flex items-center gap-2 text-cyan-300 font-bold text-sm">
-                <Volume2 className="w-4 h-4 text-cyan-400 animate-pulse" />
+              <div className="flex items-center gap-2 text-blue-800 font-bold text-sm">
+                <Volume2 className="w-4 h-4 text-blue-600" />
                 <span>Sovereign Voice Reassurance ({submittedReport.language}):</span>
               </div>
               <button
                 type="button"
                 onClick={() => speak(submittedReport.citizenReassuranceMessage || 'Your grievance has been verified and registered.', submittedReport.languageCode)}
-                className="px-3.5 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-200 border border-cyan-400/40 text-xs font-semibold flex items-center gap-2 transition"
+                className="px-3.5 py-1.5 rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-800 border border-blue-300 text-xs font-semibold flex items-center gap-2 transition cursor-pointer"
               >
                 <Volume2 className="w-3.5 h-3.5" />
                 <span>Play Native Tongue Audio</span>
               </button>
             </div>
-            <p className="italic text-slate-300 bg-[#0A192F] p-4 rounded-xl border border-slate-800 text-xs leading-relaxed">
+            <p className="italic text-slate-800 bg-white p-4 rounded-xl border border-slate-200 text-xs leading-relaxed">
               "{submittedReport.citizenReassuranceMessage || `Your complaint #${submittedReport.token} has been securely verified and queued for field deployment.`}"
             </p>
           </div>
 
           {/* Bottom Security Seals & Guarantees */}
-          <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono text-slate-400">
-            <div className="flex items-center gap-2 text-emerald-400">
-              <ShieldCheck className="w-4 h-4" />
+          <div className="pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-[11px] font-mono text-slate-600">
+            <div className="flex items-center gap-2 text-emerald-700 font-semibold">
+              <ShieldCheck className="w-4 h-4 text-emerald-600" />
               <span>Immutable Ledger Sync • Zero Backdoors • Cloud Firestore</span>
             </div>
             <div>
@@ -631,42 +627,38 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
   // MAIN REDESIGNED GOVERNMENT APPLICATION PORTAL
   // =========================================================================
   return (
-    <div id="sovereign-grievance-portal" className="max-w-7xl w-full mx-auto space-y-6 pb-20 px-2 sm:px-4 overflow-x-hidden">
+    <div id="sovereign-grievance-portal" className="max-w-7xl w-full mx-auto space-y-6 pb-20 px-2 sm:px-4 overflow-x-hidden text-slate-900">
       
       {/* =====================================================================
           1. OFFICIAL GOVERNMENT / BRICS DPI HEADER BANNER
           ===================================================================== */}
-      <div className="bg-gradient-to-r from-[#061122] via-[#0A192F] to-[#0A1F3D] border border-slate-700/80 rounded-3xl p-5 sm:p-7 shadow-2xl relative overflow-hidden">
-        
-        {/* Subtle Decorative Gradient Accents */}
-        <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
+      <div className="bg-white border border-slate-200 rounded-3xl p-5 sm:p-7 shadow-sm relative overflow-hidden">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5">
           
           {/* Official Emblem & Titles */}
           <div className="flex items-start gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-900 to-[#0A192F] border-2 border-cyan-400/40 p-1 flex items-center justify-center shrink-0 shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-blue-50 border-2 border-blue-200 p-1 flex items-center justify-center shrink-0 shadow-sm">
               <span className="text-3xl select-none">🏛️</span>
             </div>
 
             <div className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] font-mono uppercase font-bold tracking-widest px-2.5 py-0.5 rounded-full bg-cyan-400/10 text-cyan-300 border border-cyan-400/30">
+                <span className="text-[10px] font-mono uppercase font-bold tracking-widest px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
                   Official BRICS DPI Portal
                 </span>
-                <span className="text-[10px] font-mono text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-600/40">
+                <span className="text-[10px] font-mono text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
                   ISO-37120 Standard
                 </span>
-                <span className="text-[10px] font-mono text-blue-300 bg-blue-950/80 px-2 py-0.5 rounded border border-blue-600/40">
+                <span className="text-[10px] font-mono text-blue-800 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                   48-Hr SLA Standard
                 </span>
               </div>
 
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight">
                 Sovereign Public Grievance & Redressal Service
               </h1>
               
-              <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
                 Centralized Digital Public Infrastructure uniting 10 sovereign nations for prompt deficit reporting, geospatial computer vision triage, and guaranteed ministerial remediation.
               </p>
             </div>
@@ -678,11 +670,11 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
               type="button"
               id="header-brics-language-btn"
               onClick={() => setShowLanguageDrawer(true)}
-              className="flex items-center gap-2 bg-[#070F1E] hover:bg-[#0E223D] text-white px-4 py-2.5 rounded-2xl border border-cyan-500/40 shadow-md text-xs font-semibold transition"
+              className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-800 px-4 py-2.5 rounded-2xl border border-slate-300 shadow-sm text-xs font-semibold transition cursor-pointer"
             >
-              <Globe2 className="w-4 h-4 text-cyan-400" />
+              <Globe2 className="w-4 h-4 text-blue-600" />
               <span>{activeDictationLangObj.nativeName} ({activeDictationLangObj.name})</span>
-              <span className="text-[10px] font-mono bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded border border-cyan-700 font-bold">
+              <span className="text-[10px] font-mono bg-blue-100 text-blue-800 px-2 py-0.5 rounded border border-blue-200 font-bold">
                 33 Langs
               </span>
             </button>
@@ -690,15 +682,15 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
         </div>
 
         {/* Official Mode Navigation Tabs (Lodge Complaint vs Track Status) */}
-        <div className="flex items-center gap-2 mt-6 pt-4 border-t border-slate-800">
+        <div className="flex items-center gap-2 mt-6 pt-4 border-t border-slate-200">
           <button
             type="button"
             id="tab-lodge-complaint"
             onClick={() => setActivePortalTab('lodge-form')}
-            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer ${
               activePortalTab === 'lodge-form'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 ring-1 ring-blue-400'
-                : 'bg-[#070F1E] text-slate-400 hover:text-slate-200 border border-slate-800'
+                ? 'bg-blue-700 text-white shadow-md'
+                : 'bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
             }`}
           >
             <FileText className="w-4 h-4" />
@@ -709,13 +701,13 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
             type="button"
             id="tab-track-complaint"
             onClick={() => setActivePortalTab('track-status')}
-            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+            className={`px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 cursor-pointer ${
               activePortalTab === 'track-status'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 ring-1 ring-blue-400'
-                : 'bg-[#070F1E] text-slate-400 hover:text-slate-200 border border-slate-800'
+                ? 'bg-blue-700 text-white shadow-md'
+                : 'bg-slate-100 text-slate-700 hover:text-slate-900 hover:bg-slate-200 border border-slate-200'
             }`}
           >
-            <Clock className="w-4 h-4 text-amber-400" />
+            <Clock className="w-4 h-4 text-amber-600" />
             <span>Track Grievance Status & SLA</span>
           </button>
         </div>
@@ -728,18 +720,18 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
         <div id="tracking-console-view" className="space-y-6 animate-in fade-in duration-200">
           
           {/* Tracking Search Input Card */}
-          <div className="bg-[#0A192F] border border-slate-700/80 rounded-2xl p-6 shadow-xl space-y-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-slate-800 pb-3">
+          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
               <div>
-                <h2 className="text-base font-bold text-white flex items-center gap-2">
-                  <Search className="w-4 h-4 text-cyan-400" />
+                <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
+                  <Search className="w-4 h-4 text-blue-600" />
                   <span>Real-Time Grievance Lifecycle Tracker</span>
                 </h2>
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500">
                   Enter your unique cryptographic token or select from recent official filings below.
                 </p>
               </div>
-              <span className="text-[11px] font-mono text-emerald-400 bg-emerald-950/80 px-2.5 py-1 rounded border border-emerald-600/40">
+              <span className="text-[11px] font-mono text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200 font-semibold">
                 Live Government Registry
               </span>
             </div>
@@ -752,13 +744,13 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                   value={searchTokenInput}
                   onChange={(e) => setSearchTokenInput(e.target.value)}
                   placeholder="e.g. BRICS-IND-2026-8941, BRICS-BRA-2026-4412"
-                  className="w-full bg-[#070F1E] border border-slate-700 rounded-xl px-4 py-3 text-sm text-white font-mono placeholder-slate-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
+                  className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm text-slate-900 font-mono placeholder-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 focus:outline-none"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg transition flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Search className="w-4 h-4" />
                 <span>Search Tracking Record</span>
@@ -767,7 +759,7 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
 
             {/* Sample Preset Tokens for 1-Click Verification */}
             <div className="flex flex-wrap items-center gap-2 pt-2 text-xs">
-              <span className="text-slate-400">Sample Sovereign Records:</span>
+              <span className="text-slate-600 font-medium">Sample Sovereign Records:</span>
               {Object.keys(SAMPLE_TRACKING_DATABASE).map((tokenKey) => (
                 <button
                   key={tokenKey}
@@ -777,10 +769,10 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                     setTrackedReport(SAMPLE_TRACKING_DATABASE[tokenKey]);
                     setTrackingNotFound(false);
                   }}
-                  className={`px-3 py-1 rounded-lg border font-mono text-[11px] transition ${
+                  className={`px-3 py-1 rounded-lg border font-mono text-[11px] transition cursor-pointer ${
                     searchTokenInput === tokenKey
-                      ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 font-bold'
-                      : 'bg-[#070F1E] border-slate-700 text-slate-300 hover:text-white'
+                      ? 'bg-blue-100 border-blue-400 text-blue-800 font-bold'
+                      : 'bg-slate-100 border-slate-300 text-slate-700 hover:text-slate-900'
                   }`}
                 >
                   {tokenKey}
@@ -789,8 +781,8 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
             </div>
 
             {trackingNotFound && (
-              <div className="p-4 rounded-xl bg-red-950/80 border border-red-500/40 text-red-200 text-xs flex items-center gap-3">
-                <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
+              <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs flex items-center gap-3">
+                <AlertCircle className="w-5 h-5 text-red-600 shrink-0" />
                 <span>No active sovereign record found for token "{searchTokenInput}". Please check the token formatting or lodge a new complaint.</span>
               </div>
             )}
@@ -798,25 +790,25 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
 
           {/* Tracked Record Dossier & 4-Stage Progress Bar */}
           {trackedReport && (
-            <div className="bg-[#0A192F] border border-slate-700/80 rounded-2xl p-6 sm:p-8 shadow-xl space-y-8">
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm space-y-8">
               
               {/* Header Details */}
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-200 pb-5">
                 <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
+                  <div className="flex items-center gap-2 text-xs text-slate-500 font-mono">
                     <span>{trackedReport.flag} {trackedReport.country}</span>
                     <span>•</span>
                     <span>{trackedReport.location}</span>
                     <span>•</span>
                     <span>Lodged: {trackedReport.lodgedDate}</span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900">
                     {trackedReport.title}
                   </h3>
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="font-semibold text-cyan-300">{trackedReport.category}</span>
-                    <span className="text-slate-500">|</span>
-                    <span className="text-slate-400 font-mono">Ref: {trackedReport.token}</span>
+                    <span className="font-semibold text-blue-700">{trackedReport.category}</span>
+                    <span className="text-slate-300">|</span>
+                    <span className="text-slate-500 font-mono">Ref: {trackedReport.token}</span>
                   </div>
                 </div>
 
@@ -824,7 +816,7 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                   <span className={`text-xs font-mono font-bold px-3 py-1.5 rounded-xl border ${trackedReport.statusColor}`}>
                     {trackedReport.statusBadge}
                   </span>
-                  <div className="text-[11px] text-slate-400 mt-2 font-mono">
+                  <div className="text-[11px] text-slate-500 mt-2 font-mono">
                     Target SLA: {trackedReport.targetSlaHours}h | Elapsed: {trackedReport.elapsedHours}h
                   </div>
                 </div>
@@ -832,7 +824,7 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
 
               {/* 4-STAGE FORMAL PROGRESS BAR */}
               <div className="space-y-3">
-                <h4 className="text-xs uppercase font-mono font-bold tracking-wider text-slate-400">
+                <h4 className="text-xs uppercase font-mono font-bold tracking-wider text-slate-600">
                   Official 4-Stage Redressal Lifecycle
                 </h4>
 
@@ -847,19 +839,19 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                       key={st.stageNum} 
                       className={`p-4 rounded-xl border transition-all ${
                         st.completed 
-                          ? 'bg-emerald-950/40 border-emerald-500/50 text-white' 
+                          ? 'bg-emerald-50 border-emerald-300 text-slate-900' 
                           : st.active 
-                            ? 'bg-blue-950/60 border-cyan-400 text-white shadow-md ring-2 ring-cyan-500/30' 
-                            : 'bg-[#070F1E] border-slate-800 text-slate-500'
+                            ? 'bg-blue-50 border-blue-400 text-slate-900 shadow-sm ring-2 ring-blue-200' 
+                            : 'bg-slate-50 border-slate-200 text-slate-500'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-2">
                         <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold font-mono ${
                           st.completed 
-                            ? 'bg-emerald-500 text-slate-950' 
+                            ? 'bg-emerald-600 text-white' 
                             : st.active 
-                              ? 'bg-cyan-400 text-slate-950 animate-pulse' 
-                              : 'bg-slate-800 text-slate-400'
+                              ? 'bg-blue-700 text-white' 
+                              : 'bg-slate-200 text-slate-600'
                         }`}>
                           {st.completed ? '✓' : st.stageNum}
                         </span>
@@ -868,7 +860,7 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                         </span>
                       </div>
                       <h5 className="text-xs font-bold">{st.name}</h5>
-                      <p className="text-[10px] text-slate-400 mt-0.5">{st.sub}</p>
+                      <p className="text-[10px] text-slate-500 mt-0.5">{st.sub}</p>
                     </div>
                   ))}
                 </div>
@@ -878,35 +870,35 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
                 
                 {/* Departmental Officer Assignment Card */}
-                <div className="bg-[#070F1E] p-5 rounded-2xl border border-slate-800 space-y-3">
-                  <span className="text-[11px] font-mono uppercase font-semibold text-slate-400">
+                <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                  <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">
                     Assigned Redressal Authority
                   </span>
                   <div className="space-y-1">
-                    <p className="text-sm font-bold text-white">{trackedReport.department}</p>
-                    <p className="text-xs text-cyan-300">{trackedReport.assignedOfficer}</p>
+                    <p className="text-sm font-bold text-slate-900">{trackedReport.department}</p>
+                    <p className="text-xs text-blue-700 font-semibold">{trackedReport.assignedOfficer}</p>
                   </div>
-                  <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                  <div className="pt-2 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
                     <span>Priority Escalation Level:</span>
-                    <span className="text-amber-400 font-bold font-mono">Tier-1 High Priority</span>
+                    <span className="text-amber-700 font-bold font-mono">Tier-1 High Priority</span>
                   </div>
                 </div>
 
                 {/* Chronological Audit Log */}
-                <div className="bg-[#070F1E] p-5 rounded-2xl border border-slate-800 space-y-3">
-                  <span className="text-[11px] font-mono uppercase font-semibold text-slate-400">
+                <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
+                  <span className="text-[11px] font-mono uppercase font-semibold text-slate-500">
                     Chronological Redressal Audit Trail
                   </span>
                   <div className="space-y-2.5">
                     {trackedReport.events.map((ev: any, idx: number) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs">
-                        <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${ev.completed ? 'bg-emerald-400' : 'bg-slate-600'}`} />
+                        <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${ev.completed ? 'bg-emerald-600' : 'bg-slate-400'}`} />
                         <div className="flex-1">
                           <div className="flex items-center justify-between text-[11px]">
-                            <span className={`font-semibold ${ev.completed ? 'text-white' : 'text-slate-400'}`}>{ev.stage}</span>
-                            <span className="text-slate-500 font-mono text-[10px]">{ev.timestamp}</span>
+                            <span className={`font-semibold ${ev.completed ? 'text-slate-900' : 'text-slate-500'}`}>{ev.stage}</span>
+                            <span className="text-slate-400 font-mono text-[10px]">{ev.timestamp}</span>
                           </div>
-                          <p className="text-[11px] text-slate-400 mt-0.5">{ev.desc}</p>
+                          <p className="text-[11px] text-slate-600 mt-0.5">{ev.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -926,52 +918,52 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
         <div id="lodge-form-view" className="space-y-6 animate-in fade-in duration-200">
           
           {/* STEP PROGRESS BAR INDICATOR */}
-          <div className="bg-[#0A192F] border border-slate-700/80 rounded-2xl p-4 sm:p-5 shadow-lg">
+          <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm">
             <div className="flex items-center justify-between mb-3 text-xs">
-              <span className="font-bold text-white uppercase tracking-wider font-mono">
+              <span className="font-bold text-slate-900 uppercase tracking-wider font-mono">
                 Official Redressal Filing Workflow
               </span>
-              <span className="text-slate-400 font-mono text-[11px]">
+              <span className="text-slate-500 font-mono text-[11px]">
                 {isStep3Complete ? 'Step 3 of 3 Ready' : 'In Progress'}
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className={`p-3 rounded-xl border flex items-center gap-3 transition-colors ${
-                isStep1Complete ? 'bg-blue-950/60 border-cyan-500/50 text-white' : 'bg-[#070F1E] border-slate-800 text-slate-400'
+                isStep1Complete ? 'bg-blue-50 border-blue-300 text-slate-900' : 'bg-slate-50 border-slate-200 text-slate-500'
               }`}>
-                <div className="w-6 h-6 rounded-full bg-cyan-400 text-slate-950 font-bold text-xs flex items-center justify-center shrink-0">
+                <div className="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0">
                   1
                 </div>
                 <div>
                   <div className="text-xs font-bold">Jurisdiction & Identity</div>
-                  <div className="text-[10px] text-slate-400">{currentCountry.name} • {currentRegion.name}</div>
+                  <div className="text-[10px] text-slate-500">{currentCountry.name} • {currentRegion.name}</div>
                 </div>
               </div>
 
               <div className={`p-3 rounded-xl border flex items-center gap-3 transition-colors ${
-                isStep2Complete ? 'bg-blue-950/60 border-cyan-500/50 text-white' : 'bg-[#070F1E] border-slate-800 text-slate-400'
+                isStep2Complete ? 'bg-blue-50 border-blue-300 text-slate-900' : 'bg-slate-50 border-slate-200 text-slate-500'
               }`}>
-                <div className="w-6 h-6 rounded-full bg-cyan-400 text-slate-950 font-bold text-xs flex items-center justify-center shrink-0">
+                <div className="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0">
                   2
                 </div>
                 <div>
                   <div className="text-xs font-bold">Infrastructure Sector</div>
-                  <div className="text-[10px] text-slate-400">{category} ({urgencyLevel})</div>
+                  <div className="text-[10px] text-slate-500">{category} ({urgencyLevel})</div>
                 </div>
               </div>
 
               <div className={`p-3 rounded-xl border flex items-center gap-3 transition-colors ${
-                isStep3Complete ? 'bg-emerald-950/60 border-emerald-500/50 text-white' : 'bg-[#070F1E] border-slate-800 text-slate-400'
+                isStep3Complete ? 'bg-emerald-50 border-emerald-300 text-slate-900' : 'bg-slate-50 border-slate-200 text-slate-500'
               }`}>
                 <div className={`w-6 h-6 rounded-full font-bold text-xs flex items-center justify-center shrink-0 ${
-                  isStep3Complete ? 'bg-emerald-400 text-slate-950' : 'bg-slate-700 text-slate-300'
+                  isStep3Complete ? 'bg-emerald-600 text-white' : 'bg-slate-300 text-slate-700'
                 }`}>
                   3
                 </div>
                 <div>
                   <div className="text-xs font-bold">Evidence & Statement</div>
-                  <div className="text-[10px] text-slate-400">GPS, Voice & AI Triage</div>
+                  <div className="text-[10px] text-slate-500">GPS, Voice & AI Triage</div>
                 </div>
               </div>
             </div>
@@ -988,11 +980,11 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
               {/* SECTION: INTERACTIVE GEOSPATIAL MAP & PUBLIC DATA CONTEXT */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between px-1">
-                  <label className="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
-                    <Compass className="w-4 h-4 text-cyan-400" />
+                  <label className="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                    <Compass className="w-4 h-4 text-blue-600" />
                     <span>Geospatial Incident Triangulation</span>
                   </label>
-                  <span className="text-[10px] text-cyan-300 font-mono">Google Earth Engine</span>
+                  <span className="text-[10px] text-blue-700 font-mono font-semibold">Google Earth Engine</span>
                 </div>
                 
                 <GeospatialEarthEngineWidget
@@ -1010,11 +1002,11 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
               {/* SECTION: MULTIMODAL PHOTOGRAPHIC EVIDENCE SCANNER */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between px-1">
-                  <label className="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
-                    <Camera className="w-4 h-4 text-purple-400" />
+                  <label className="text-xs font-bold text-slate-800 uppercase tracking-wider font-mono flex items-center gap-1.5">
+                    <Camera className="w-4 h-4 text-purple-600" />
                     <span>Multimodal Photographic Proof</span>
                   </label>
-                  <span className="text-[10px] text-purple-300 font-mono">Vertex Vision</span>
+                  <span className="text-[10px] text-purple-700 font-mono font-semibold">Vertex Vision</span>
                 </div>
 
                 <MultimodalVisionDropzone
@@ -1050,16 +1042,16 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
             <div className="lg:col-span-7 space-y-6">
               
               {/* CARD 1: TERRITORIAL JURISDICTION & CITIZEN IDENTITY */}
-              <div className="bg-[#0A192F] border border-slate-700/80 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+              <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
                 
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
                   <div className="flex items-center gap-2">
-                    <Building2 className="w-4 h-4 text-cyan-400" />
-                    <h3 className="text-sm font-bold text-white">
+                    <Building2 className="w-4 h-4 text-blue-600" />
+                    <h3 className="text-sm font-bold text-slate-900">
                       1. Sovereign Jurisdiction & Citizen Metadata
                     </h3>
                   </div>
-                  <span className="text-[10px] font-mono bg-blue-950 text-cyan-300 px-2 py-0.5 rounded border border-blue-800">
+                  <span className="text-[10px] font-mono bg-blue-50 text-blue-800 px-2 py-0.5 rounded border border-blue-200 font-semibold">
                     Section 1
                   </span>
                 </div>
@@ -1067,13 +1059,13 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                 {/* Country & Region Selectors */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold text-slate-300">
-                      BRICS Sovereign Member Nation <span className="text-rose-400">*</span>
+                    <label className="block text-xs font-semibold text-slate-700">
+                      BRICS Sovereign Member Nation <span className="text-rose-600">*</span>
                     </label>
                     <select
                       value={countryId}
                       onChange={(e) => handleCountryChange(e.target.value as BRICSCountryId)}
-                      className="w-full bg-[#070F1E] border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-medium focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none cursor-pointer"
+                      className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 font-medium focus:border-blue-600 focus:ring-2 focus:ring-blue-100 focus:outline-none cursor-pointer"
                     >
                       {BRICS_COUNTRIES.map((c) => (
                         <option key={c.id} value={c.id}>
@@ -1084,13 +1076,13 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold text-slate-300">
-                      State / Territorial Jurisdiction <span className="text-rose-400">*</span>
+                    <label className="block text-xs font-semibold text-slate-700">
+                      State / Territorial Jurisdiction <span className="text-rose-600">*</span>
                     </label>
                     <select
                       value={regionId}
                       onChange={(e) => handleRegionChange(e.target.value)}
-                      className="w-full bg-[#070F1E] border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white font-medium focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none cursor-pointer"
+                      className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 font-medium focus:border-blue-600 focus:ring-2 focus:ring-blue-100 focus:outline-none cursor-pointer"
                     >
                       {countryRegions.map((r) => (
                         <option key={r.id} value={r.id}>
@@ -1105,17 +1097,17 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
                   <div className="space-y-1.5">
                     <div className="flex items-center justify-between">
-                      <label className="text-xs font-semibold text-slate-300 flex items-center gap-1">
-                        <User className="w-3.5 h-3.5 text-slate-400" />
+                      <label className="text-xs font-semibold text-slate-700 flex items-center gap-1">
+                        <User className="w-3.5 h-3.5 text-slate-500" />
                         <span>Citizen Name:</span>
                       </label>
                       
-                      <label className="flex items-center gap-1.5 text-[11px] text-cyan-300 cursor-pointer select-none">
+                      <label className="flex items-center gap-1.5 text-[11px] text-blue-700 font-medium cursor-pointer select-none">
                         <input
                           type="checkbox"
                           checked={isAnonymous}
                           onChange={(e) => setIsAnonymous(e.target.checked)}
-                          className="rounded border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer"
+                          className="rounded border-slate-300 text-blue-600 focus:ring-0 cursor-pointer"
                         />
                         <span>File Anonymously</span>
                       </label>
@@ -1127,13 +1119,13 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                       value={isAnonymous ? 'Protected Anonymous Citizen' : citizenName}
                       onChange={(e) => setCitizenName(e.target.value)}
                       placeholder="e.g. Maria Silva / Rajeshwar Kumar"
-                      className="w-full bg-[#070F1E] disabled:opacity-50 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
+                      className="w-full bg-white disabled:bg-slate-100 disabled:opacity-60 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 focus:outline-none"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold text-slate-300 flex items-center gap-1">
-                      <Phone className="w-3.5 h-3.5 text-slate-400" />
+                    <label className="block text-xs font-semibold text-slate-700 flex items-center gap-1">
+                      <Phone className="w-3.5 h-3.5 text-slate-500" />
                       <span>SMS Updates Mobile (Optional):</span>
                     </label>
                     <input
@@ -1141,23 +1133,23 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                       value={mobileNumber}
                       onChange={(e) => setMobileNumber(e.target.value)}
                       placeholder="+91 98765 43210 (For real-time SMS alerts)"
-                      className="w-full bg-[#070F1E] border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
+                      className="w-full bg-white border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 placeholder-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 focus:outline-none"
                     />
                   </div>
                 </div>
               </div>
 
               {/* CARD 2: INFRASTRUCTURE CLASSIFICATION & URGENCY MATRIX */}
-              <div className="bg-[#0A192F] border border-slate-700/80 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+              <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
                 
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
                   <div className="flex items-center gap-2">
-                    <Layers className="w-4 h-4 text-cyan-400" />
-                    <h3 className="text-sm font-bold text-white">
+                    <Layers className="w-4 h-4 text-blue-600" />
+                    <h3 className="text-sm font-bold text-slate-900">
                       2. Infrastructure Deficit Classification (ISO-37120)
                     </h3>
                   </div>
-                  <span className="text-[10px] font-mono text-cyan-300 font-semibold">{tSector(category)}</span>
+                  <span className="text-[10px] font-mono text-blue-700 font-semibold">{tSector(category)}</span>
                 </div>
 
                 {/* 7 Sectors Structured Cards Grid */}
@@ -1170,15 +1162,15 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                         key={sec.id}
                         type="button"
                         onClick={() => setCategory(sec.id)}
-                        className={`p-3 rounded-xl border text-left transition-all duration-150 flex flex-col justify-between min-h-[72px] ${
+                        className={`p-3 rounded-xl border text-left transition-all duration-150 flex flex-col justify-between min-h-[72px] cursor-pointer ${
                           isSelected
-                            ? 'bg-blue-900/70 border-cyan-400 text-white shadow-md ring-2 ring-cyan-500/30'
-                            : 'bg-[#070F1E] border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                            ? 'bg-blue-50 border-blue-600 text-blue-900 shadow-sm ring-2 ring-blue-300'
+                            : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-50'
                         }`}
                       >
                         <div className="flex items-center justify-between w-full">
-                          <IconComp className={`w-4 h-4 ${isSelected ? 'text-cyan-400' : 'text-slate-400'}`} />
-                          <span className="text-[9px] font-mono text-slate-500">{sec.slaDefaultHours}h SLA</span>
+                          <IconComp className={`w-4 h-4 ${isSelected ? 'text-blue-700' : 'text-slate-500'}`} />
+                          <span className="text-[9px] font-mono text-slate-500 font-semibold">{sec.slaDefaultHours}h SLA</span>
                         </div>
                         <div className="mt-1">
                           <div className="text-xs font-bold leading-tight line-clamp-1">{tSector(sec.id)}</div>
@@ -1190,10 +1182,10 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                 </div>
 
                 {/* Urgency & SLA Classification Matrix */}
-                <div className="pt-2 border-t border-slate-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="pt-2 border-t border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div>
-                    <span className="text-xs font-semibold text-slate-300">Urgency Severity Matrix:</span>
-                    <p className="text-[10px] text-slate-400">Determines immediate dispatch protocol</p>
+                    <span className="text-xs font-semibold text-slate-700">Urgency Severity Matrix:</span>
+                    <p className="text-[10px] text-slate-500">Determines immediate dispatch protocol</p>
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -1202,14 +1194,14 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                         key={lvl}
                         type="button"
                         onClick={() => setUrgencyLevel(lvl)}
-                        className={`text-xs px-3 py-1.5 rounded-xl font-bold font-mono transition ${
+                        className={`text-xs px-3 py-1.5 rounded-xl font-bold font-mono transition cursor-pointer ${
                           urgencyLevel === lvl
                             ? lvl === 'Critical' 
-                              ? 'bg-red-600 text-white shadow-md' 
+                              ? 'bg-red-600 text-white shadow-sm' 
                               : lvl === 'High' 
-                                ? 'bg-amber-600 text-white shadow-md' 
-                                : 'bg-blue-600 text-white shadow-md'
-                            : 'bg-[#070F1E] text-slate-400 hover:text-white border border-slate-800'
+                                ? 'bg-amber-600 text-white shadow-sm' 
+                                : 'bg-blue-700 text-white shadow-sm'
+                            : 'bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200'
                         }`}
                       >
                         {tUrgency(lvl)}
@@ -1220,16 +1212,16 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
               </div>
 
               {/* CARD 3: FORMAL GRIEVANCE STATEMENT & VOICE SYNTHESIS */}
-              <div className="bg-[#0A192F] border border-slate-700/80 rounded-2xl p-5 sm:p-6 shadow-xl space-y-5">
+              <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm space-y-5">
                 
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-3">
                   <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-cyan-400" />
-                    <h3 className="text-sm font-bold text-white">
+                    <FileText className="w-4 h-4 text-blue-600" />
+                    <h3 className="text-sm font-bold text-slate-900">
                       3. Formal Grievance Statement & Multilingual Evidence
                     </h3>
                   </div>
-                  <span className="text-[10px] font-mono bg-blue-950 text-cyan-300 px-2 py-0.5 rounded border border-blue-800">
+                  <span className="text-[10px] font-mono bg-blue-50 text-blue-800 px-2 py-0.5 rounded border border-blue-200 font-semibold">
                     Section 3
                   </span>
                 </div>
@@ -1237,12 +1229,12 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                 {/* Complaint Title Input */}
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-semibold text-slate-300">
-                      Grievance Headline / Summary <span className="text-rose-400">*</span>
+                    <label className="text-xs font-semibold text-slate-700">
+                      Grievance Headline / Summary <span className="text-rose-600">*</span>
                     </label>
                     {visionAnalysisData && (
-                      <span className="text-[10px] font-mono text-purple-300 flex items-center gap-1">
-                        <Sparkles className="w-3 h-3 text-purple-400" />
+                      <span className="text-[10px] font-mono text-purple-700 flex items-center gap-1 font-semibold">
+                        <Sparkles className="w-3 h-3 text-purple-600" />
                         Extracted from Vertex Vision
                       </span>
                     )}
@@ -1253,15 +1245,15 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="e.g. Broken Water Main causing severe flooding and road erosion"
-                    className="w-full bg-[#070F1E] border border-slate-700 rounded-xl px-4 py-3 text-xs sm:text-sm text-white placeholder-slate-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none"
+                    className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 focus:outline-none"
                   />
                 </div>
 
                 {/* Detailed Description with AI Smart Draft & Voice Microphones */}
                 <div className="space-y-2.5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <label className="text-xs font-semibold text-slate-300">
-                      Detailed Incident Narrative <span className="text-rose-400">*</span>
+                    <label className="text-xs font-semibold text-slate-700">
+                      Detailed Incident Narrative <span className="text-rose-600">*</span>
                     </label>
 
                     {/* Integrated AI & Voice Action Toolbar */}
@@ -1270,9 +1262,9 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                         type="button"
                         id="smart-draft-gemini-btn"
                         onClick={() => setShowSmartDraftModal(true)}
-                        className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer"
+                        className="px-3 py-1.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold shadow-sm transition flex items-center gap-1.5 cursor-pointer"
                       >
-                        <Sparkles className="w-3.5 h-3.5 animate-pulse text-cyan-200" />
+                        <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
                         <span>Smart Draft (Gemini)</span>
                       </button>
 
@@ -1282,11 +1274,11 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                         onClick={handleToggleDictation}
                         className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                           isListening
-                            ? 'bg-red-600 text-white animate-pulse shadow-lg'
-                            : 'bg-[#070F1E] hover:bg-slate-800 text-cyan-300 border border-slate-700'
+                            ? 'bg-red-600 text-white animate-pulse shadow-md'
+                            : 'bg-slate-100 hover:bg-slate-200 text-blue-700 border border-slate-300'
                         }`}
                       >
-                        {isListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5 text-cyan-400" />}
+                        {isListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5 text-blue-600" />}
                         <span>{isListening ? 'Stop Dictating' : `Dictate (${activeDictationLangObj.code.toUpperCase()})`}</span>
                       </button>
 
@@ -1296,11 +1288,11 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                         onClick={handleToggleListenToDraft}
                         className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer ${
                           isPlayingDraftAudio
-                            ? 'bg-emerald-600 text-white shadow-lg'
-                            : 'bg-[#070F1E] hover:bg-slate-800 text-slate-300 border border-slate-700'
+                            ? 'bg-emerald-600 text-white shadow-md'
+                            : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300'
                         }`}
                       >
-                        {isPlayingDraftAudio ? <Square className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-emerald-400" />}
+                        {isPlayingDraftAudio ? <Square className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-emerald-600" />}
                         <span>{isPlayingDraftAudio ? 'Stop Audio' : 'Listen Read-Back'}</span>
                       </button>
                     </div>
@@ -1314,38 +1306,38 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       placeholder="Provide specific details about the infrastructure defect, affected households, and urgent risks..."
-                      className="w-full bg-[#070F1E] border border-slate-700 rounded-xl p-3.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 focus:outline-none leading-relaxed"
+                      className="w-full bg-white border border-slate-300 rounded-xl p-3.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 focus:outline-none leading-relaxed"
                     />
 
                     {/* Speech Dictation Waveform Overlay */}
                     {isListening && (
-                      <div className="absolute bottom-3 left-3 right-3 bg-red-950/90 border border-red-500/50 rounded-xl p-2.5 flex items-center justify-between gap-3 text-xs text-red-200">
+                      <div className="absolute bottom-3 left-3 right-3 bg-red-50 border border-red-300 rounded-xl p-2.5 flex items-center justify-between gap-3 text-xs text-red-900 shadow-sm">
                         <div className="flex items-center gap-2">
                           <div className="flex items-center gap-1">
-                            <span className="w-1 h-3 bg-red-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                            <span className="w-1 h-5 bg-red-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                            <span className="w-1 h-4 bg-red-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                            <span className="w-1 h-6 bg-red-400 rounded-full animate-bounce" style={{ animationDelay: '450ms' }} />
+                            <span className="w-1 h-3 bg-red-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                            <span className="w-1 h-5 bg-red-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                            <span className="w-1 h-4 bg-red-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                            <span className="w-1 h-6 bg-red-600 rounded-full animate-bounce" style={{ animationDelay: '450ms' }} />
                           </div>
-                          <span className="font-mono text-[11px]">Listening in {activeDictationLangObj.name}...</span>
+                          <span className="font-mono text-[11px] font-semibold">Listening in {activeDictationLangObj.name}...</span>
                         </div>
-                        <span className="text-[10px] italic opacity-90 truncate max-w-xs">{liveInterimText || 'Speak clearly into microphone...'}</span>
+                        <span className="text-[10px] italic text-slate-600 truncate max-w-xs">{liveInterimText || 'Speak clearly into microphone...'}</span>
                       </div>
                     )}
                   </div>
                 </div>
 
                 {/* Citizen Statutory Declaration */}
-                <div className="pt-2 border-t border-slate-800 flex items-start gap-2.5 text-xs text-slate-400">
+                <div className="pt-2 border-t border-slate-200 flex items-start gap-2.5 text-xs text-slate-600">
                   <input
                     type="checkbox"
                     id="declaration-checkbox"
                     checked={agreedToCharter}
                     onChange={(e) => setAgreedToCharter(e.target.checked)}
-                    className="mt-0.5 rounded border-slate-700 text-cyan-500 focus:ring-0 cursor-pointer"
+                    className="mt-0.5 rounded border-slate-300 text-blue-600 focus:ring-0 cursor-pointer"
                   />
                   <label htmlFor="declaration-checkbox" className="cursor-pointer select-none leading-relaxed">
-                    I hereby declare that this grievance is genuine and accurate to the best of my knowledge under the <span className="text-slate-300 font-semibold">BRICS Sovereign Digital Public Infrastructure Charter</span>.
+                    I hereby declare that this grievance is genuine and accurate to the best of my knowledge under the <span className="text-slate-900 font-semibold">BRICS Sovereign Digital Public Infrastructure Charter</span>.
                   </label>
                 </div>
               </div>
@@ -1356,11 +1348,11 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                   type="submit"
                   disabled={!agreedToCharter}
                   id="submit-complaint-master-btn"
-                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-cyan-600 to-emerald-600 hover:from-blue-500 hover:via-cyan-500 hover:to-emerald-500 disabled:opacity-50 text-white font-extrabold text-sm sm:text-base shadow-2xl transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer hover:scale-[1.005]"
+                  className="w-full py-4 rounded-2xl bg-blue-700 hover:bg-blue-800 disabled:opacity-50 text-white font-extrabold text-sm sm:text-base shadow-md transition-all duration-200 flex items-center justify-center gap-3 cursor-pointer"
                 >
                   <Send className="w-5 h-5" />
                   <span>Submit Sovereign Grievance (Dispatch to Live Ledger)</span>
-                  <Sparkles className="w-5 h-5 animate-pulse text-cyan-200" />
+                  <Sparkles className="w-5 h-5 text-cyan-200" />
                 </button>
               </div>
 
@@ -1374,28 +1366,28 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
           4. 33 LANGUAGES MODAL DRAWER (GOOGLE CLOUD TRANSLATION API)
           ===================================================================== */}
       {showLanguageDrawer && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="bg-[#0A192F] border border-cyan-500/50 rounded-3xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
+          <div className="bg-white border border-slate-200 rounded-3xl w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
             
-            <div className="p-4 bg-gradient-to-r from-blue-950 to-slate-950 border-b border-slate-800 flex items-center justify-between">
+            <div className="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
-                <Globe2 className="w-5 h-5 text-cyan-400" />
+                <Globe2 className="w-5 h-5 text-blue-600" />
                 <div>
-                  <h3 className="text-sm font-bold text-white">Google Cloud Translation (33 BRICS & Regional Languages)</h3>
-                  <p className="text-[10px] text-slate-400 font-mono">Dynamic localized UI & native voice synthesis across all member states</p>
+                  <h3 className="text-sm font-bold text-slate-900">Google Cloud Translation (33 BRICS & Regional Languages)</h3>
+                  <p className="text-[10px] text-slate-500 font-mono">Dynamic localized UI & native voice synthesis across all member states</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={() => setShowLanguageDrawer(false)}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition"
+                className="p-1.5 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-200 transition cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Search Input */}
-            <div className="p-3 border-b border-slate-800 bg-[#070F1E]">
+            <div className="p-3 border-b border-slate-200 bg-white">
               <div className="relative">
                 <Search className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
                 <input
@@ -1403,7 +1395,7 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                   value={langSearchQuery}
                   onChange={(e) => setLangSearchQuery(e.target.value)}
                   placeholder="Search 33 languages (e.g. Hindi, Russian, Arabic, Zulu, Portuguese, Mandarin)..."
-                  className="w-full bg-[#0A192F] border border-slate-700 rounded-xl pl-9 pr-3 py-2 text-xs text-white placeholder-slate-500 focus:border-cyan-400 focus:outline-none"
+                  className="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:border-blue-600 focus:outline-none"
                 />
               </div>
             </div>
@@ -1421,17 +1413,17 @@ export const CitizenComplaintPage: React.FC<CitizenComplaintPageProps> = ({
                       setLanguage(lang.code);
                       setShowLanguageDrawer(false);
                     }}
-                    className={`p-3 rounded-xl border text-left flex items-center justify-between transition ${
+                    className={`p-3 rounded-xl border text-left flex items-center justify-between transition cursor-pointer ${
                       isSelected
-                        ? 'bg-blue-900/60 border-cyan-400 text-white font-bold'
-                        : 'bg-[#070F1E] border-slate-800 text-slate-300 hover:bg-[#0f213a] hover:border-slate-700'
+                        ? 'bg-blue-50 border-blue-600 text-blue-900 font-bold'
+                        : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:border-slate-300'
                     }`}
                   >
                     <div>
-                      <div className="font-semibold text-white">{lang.nativeName} ({lang.name})</div>
-                      <div className="text-[10px] text-slate-400 font-mono">{lang.country} • ISO: {lang.code}</div>
+                      <div className="font-semibold text-slate-900">{lang.nativeName} ({lang.name})</div>
+                      <div className="text-[10px] text-slate-500 font-mono">{lang.country} • ISO: {lang.code}</div>
                     </div>
-                    {isSelected && <Check className="w-4 h-4 text-cyan-400" />}
+                    {isSelected && <Check className="w-4 h-4 text-blue-600" />}
                   </button>
                 );
               })}
