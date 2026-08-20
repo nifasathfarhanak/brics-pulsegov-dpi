@@ -44,6 +44,10 @@ export const GeospatialMapCanvas: React.FC<GeospatialMapCanvasProps> = ({
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [showContamination, setShowContamination] = useState<boolean>(true);
   const [showCorridors, setShowCorridors] = useState<boolean>(true);
+  const [showGatiShakti, setShowGatiShakti] = useState<boolean>(true);
+  const [showJalJeevan, setShowJalJeevan] = useState<boolean>(false);
+  const [showBhuvanSatellite, setShowBhuvanSatellite] = useState<boolean>(false);
+  const [showImdWeather, setShowImdWeather] = useState<boolean>(false);
   const [hoveredRegion, setHoveredRegion] = useState<RegionData | null>(null);
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
@@ -148,7 +152,59 @@ export const GeospatialMapCanvas: React.FC<GeospatialMapCanvasProps> = ({
         </div>
 
         {/* Action Controls & Layer Switches */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+          <button
+            onClick={() => setShowGatiShakti(!showGatiShakti)}
+            className={`px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-all flex items-center gap-1 cursor-pointer ${
+              showGatiShakti 
+                ? 'bg-amber-900/50 text-amber-300 border-amber-500/50 shadow' 
+                : 'bg-[#070F1E] text-slate-400 border-slate-800'
+            }`}
+            title="PM GatiShakti Multi-Modal Logistics & Freight Corridors"
+          >
+            <Truck className="w-3 h-3 text-amber-400" />
+            <span>PM GatiShakti</span>
+          </button>
+
+          <button
+            onClick={() => setShowJalJeevan(!showJalJeevan)}
+            className={`px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-all flex items-center gap-1 cursor-pointer ${
+              showJalJeevan 
+                ? 'bg-cyan-900/50 text-cyan-300 border-cyan-500/50 shadow' 
+                : 'bg-[#070F1E] text-slate-400 border-slate-800'
+            }`}
+            title="Jal Jeevan Mission Potable Water Telemetry"
+          >
+            <Droplets className="w-3 h-3 text-cyan-400" />
+            <span>Jal Jeevan</span>
+          </button>
+
+          <button
+            onClick={() => setShowBhuvanSatellite(!showBhuvanSatellite)}
+            className={`px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-all flex items-center gap-1 cursor-pointer ${
+              showBhuvanSatellite 
+                ? 'bg-emerald-900/50 text-emerald-300 border-emerald-500/50 shadow' 
+                : 'bg-[#070F1E] text-slate-400 border-slate-800'
+            }`}
+            title="ISRO Bhuvan Satellite Earth Observation Layer"
+          >
+            <Radio className="w-3 h-3 text-emerald-400" />
+            <span>ISRO Bhuvan</span>
+          </button>
+
+          <button
+            onClick={() => setShowImdWeather(!showImdWeather)}
+            className={`px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-all flex items-center gap-1 cursor-pointer ${
+              showImdWeather 
+                ? 'bg-indigo-900/50 text-indigo-300 border-indigo-500/50 shadow' 
+                : 'bg-[#070F1E] text-slate-400 border-slate-800'
+            }`}
+            title="IMD Live Cloudburst & Monsoon Alert Radar"
+          >
+            <Zap className="w-3 h-3 text-indigo-400" />
+            <span>IMD Radar</span>
+          </button>
+
           <button
             onClick={() => setShowContamination(!showContamination)}
             className={`px-2.5 py-1 rounded-xl text-[11px] font-semibold border transition-all flex items-center gap-1 cursor-pointer ${
@@ -158,7 +214,7 @@ export const GeospatialMapCanvas: React.FC<GeospatialMapCanvasProps> = ({
             }`}
           >
             <AlertTriangle className="w-3 h-3 text-rose-400" />
-            <span>{t.contaminationAlerts || 'Contamination Alerts'}</span>
+            <span>{t.contaminationAlerts || 'Contamination'}</span>
           </button>
 
           <button
@@ -170,7 +226,7 @@ export const GeospatialMapCanvas: React.FC<GeospatialMapCanvasProps> = ({
             }`}
           >
             <Sparkles className="w-3 h-3 text-sky-400" />
-            <span>{t.dpiCorridors || 'DPI Corridors'}</span>
+            <span>{t.dpiCorridors || 'DPI Bridge'}</span>
           </button>
 
           {/* Zoom Controls */}
@@ -298,6 +354,109 @@ export const GeospatialMapCanvas: React.FC<GeospatialMapCanvasProps> = ({
                   </g>
                 );
               })}
+            </g>
+          )}
+
+          {/* PM GatiShakti Multi-Modal Infrastructure Corridors Layer */}
+          {showGatiShakti && (
+            <g opacity="0.75">
+              {/* Western Dedicated Freight Corridor (Delhi - Mumbai) */}
+              <path
+                d="M 440 160 Q 380 280 340 370"
+                fill="none"
+                stroke="#f59e0b"
+                strokeWidth="2.5"
+                strokeDasharray="6 3"
+                className="animate-pulse"
+              />
+              {/* Eastern Dedicated Freight Corridor (Ludhiana - Dankuni / Kolkata) */}
+              <path
+                d="M 440 160 Q 560 210 680 290"
+                fill="none"
+                stroke="#f59e0b"
+                strokeWidth="2.5"
+                strokeDasharray="6 3"
+              />
+              {/* Chennai - Bengaluru - Mumbai Industrial Corridor */}
+              <path
+                d="M 340 370 Q 420 480 470 510 Q 530 480 540 450"
+                fill="none"
+                stroke="#d97706"
+                strokeWidth="2"
+                strokeDasharray="4 2"
+              />
+              {/* GatiShakti Multi-Modal Node Labels */}
+              <text x="445" y="155" fill="#f59e0b" fontSize="8" fontWeight="bold" fontFamily="monospace">
+                GatiShakti Node: NCR Multi-Modal Hub
+              </text>
+              <text x="345" y="365" fill="#f59e0b" fontSize="8" fontWeight="bold" fontFamily="monospace">
+                JNPT Port Logistics Corridor
+              </text>
+            </g>
+          )}
+
+          {/* Jal Jeevan Mission & Groundwater Purity Layer */}
+          {showJalJeevan && (
+            <g opacity="0.8">
+              {visibleRegions.map((region) => {
+                const coords = projectCoordinates(region.coordinates.lat, region.coordinates.lng, region.countryId);
+                return (
+                  <g key={`jjm-${region.id}`}>
+                    <circle
+                      cx={coords.x + 12}
+                      cy={coords.y + 12}
+                      r="9"
+                      fill="#0891b2"
+                      fillOpacity="0.35"
+                      stroke="#06b6d4"
+                      strokeWidth="1.2"
+                    />
+                    <text
+                      x={coords.x + 8}
+                      y={coords.y + 15}
+                      fill="#67e8f9"
+                      fontSize="7"
+                      fontWeight="bold"
+                      fontFamily="monospace"
+                    >
+                      JJM
+                    </text>
+                  </g>
+                );
+              })}
+            </g>
+          )}
+
+          {/* ISRO Bhuvan Satellite Imagery Grid Overlay */}
+          {showBhuvanSatellite && (
+            <g opacity="0.45">
+              <rect width="1000" height="650" fill="#042f2e" fillOpacity="0.25" />
+              <circle cx="480" cy="300" r="280" fill="none" stroke="#10b981" strokeWidth="0.75" strokeDasharray="5 5" />
+              <circle cx="480" cy="300" r="160" fill="none" stroke="#10b981" strokeWidth="0.75" strokeDasharray="3 3" />
+              <text x="750" y="40" fill="#34d399" fontSize="10" fontWeight="bold" fontFamily="monospace">
+                🛰️ ISRO Bhuvan EO Satellite Telemetry Active
+              </text>
+            </g>
+          )}
+
+          {/* IMD Live Monsoon Radar & Cloudburst Telemetry Layer */}
+          {showImdWeather && (
+            <g opacity="0.65">
+              {/* Cloudburst Radar Sweep */}
+              <circle
+                cx="580"
+                cy="240"
+                r="70"
+                fill="#4338ca"
+                fillOpacity="0.3"
+                stroke="#6366f1"
+                strokeWidth="1.5"
+                className="animate-ping"
+                style={{ animationDuration: '4s' }}
+              />
+              <text x="540" y="235" fill="#a5b4fc" fontSize="8" fontWeight="bold" fontFamily="monospace">
+                ⛈️ IMD Heavy Cloudburst Radar Alert
+              </text>
             </g>
           )}
 

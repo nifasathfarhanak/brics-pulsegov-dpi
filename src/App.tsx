@@ -18,6 +18,14 @@ import { CrisisDashboardView } from './components/CrisisDashboardView';
 import { BudgetSimulatorModal } from './components/BudgetSimulatorModal';
 import { SovereignBRICSFooter } from './components/SovereignBRICSFooter';
 
+// Flagship Sovereign DPI & Multi-Agent Components
+import { WhatsAppTelegramBotModal } from './components/WhatsAppTelegramBotModal';
+import { MinisterialPolicyDebate } from './components/MinisterialPolicyDebate';
+import { DuplicateClusterVisualizer } from './components/DuplicateClusterVisualizer';
+import { IndiaDistrictHierarchy } from './components/IndiaDistrictHierarchy';
+import { CrisisSimulationModal } from './components/CrisisSimulationModal';
+import { JudgesDemoGuideModal } from './components/JudgesDemoGuideModal';
+
 import { BRICSCountryId, CitizenReport, DemandHotspot, RegionData, UserRole } from './types';
 import { INITIAL_CITIZEN_REPORTS, DEMAND_HOTSPOTS, REGIONS_DATA, BRICS_COUNTRIES } from './data/bricsData';
 
@@ -39,6 +47,14 @@ function MainAppContent() {
   const [isIntakeModalOpen, setIsIntakeModalOpen] = useState<boolean>(false);
   const [selectedHotspotForDPR, setSelectedHotspotForDPR] = useState<DemandHotspot | null>(null);
   const [budgetModalRegion, setBudgetModalRegion] = useState<RegionData | null>(null);
+
+  // Sovereign DPI Feature Modals
+  const [isWhatsAppBotOpen, setIsWhatsAppBotOpen] = useState<boolean>(false);
+  const [isPolicyDebateOpen, setIsPolicyDebateOpen] = useState<boolean>(false);
+  const [isDuplicateInspectorOpen, setIsDuplicateInspectorOpen] = useState<boolean>(false);
+  const [isIndiaHierarchyOpen, setIsIndiaHierarchyOpen] = useState<boolean>(false);
+  const [isCrisisSimulationOpen, setIsCrisisSimulationOpen] = useState<boolean>(false);
+  const [isJudgesGuideOpen, setIsJudgesGuideOpen] = useState<boolean>(false);
 
   // Stats calculation
   const totalBeneficiariesNum = hotspots.reduce((acc, h) => acc + h.estimatedBeneficiaries, 0);
@@ -163,6 +179,12 @@ function MainAppContent() {
             onSelectHotspot={handleNavigateToDPR}
             onGenerateDPRForHotspot={handleNavigateToDPR}
             onOpenBudgetSimulator={handleOpenBudgetModal}
+            onOpenWhatsAppBot={() => setIsWhatsAppBotOpen(true)}
+            onOpenPolicyDebate={() => setIsPolicyDebateOpen(true)}
+            onOpenDuplicateInspector={() => setIsDuplicateInspectorOpen(true)}
+            onOpenIndiaHierarchy={() => setIsIndiaHierarchyOpen(true)}
+            onOpenCrisisSimulation={() => setIsCrisisSimulationOpen(true)}
+            onOpenJudgesGuide={() => setIsJudgesGuideOpen(true)}
           />
         )}
 
@@ -229,6 +251,126 @@ function MainAppContent() {
         isOpen={!!budgetModalRegion}
         onClose={() => setBudgetModalRegion(null)}
         region={budgetModalRegion}
+      />
+
+      {/* 1. WhatsApp & Telegram DPI Citizen Intake Simulator */}
+      <WhatsAppTelegramBotModal
+        isOpen={isWhatsAppBotOpen}
+        onClose={() => setIsWhatsAppBotOpen(false)}
+        onTrackOnMap={(regionId) => {
+          setIsWhatsAppBotOpen(false);
+          setActiveTab('map');
+        }}
+        onAddReport={(report) => {
+          handleAddNewReport(report);
+        }}
+      />
+
+      {/* 2. Ministerial Policy Chamber Modal */}
+      {isPolicyDebateOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
+          <div className="bg-[#0A192F] border border-blue-500/50 rounded-3xl max-w-5xl w-full p-4 sm:p-6 my-auto shadow-2xl relative">
+            <button
+              onClick={() => setIsPolicyDebateOpen(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 cursor-pointer z-10"
+            >
+              ✕ Close
+            </button>
+            <div className="mt-2">
+              <MinisterialPolicyDebate
+                onApproveFunding={(summary, budgetM) => {
+                  setIsPolicyDebateOpen(false);
+                  setActiveTab('dpr-studio');
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 3. Semantic Duplicate Clustering Inspector Modal */}
+      {isDuplicateInspectorOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
+          <div className="bg-[#0A192F] border border-purple-500/50 rounded-3xl max-w-5xl w-full p-4 sm:p-6 my-auto shadow-2xl relative">
+            <button
+              onClick={() => setIsDuplicateInspectorOpen(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 cursor-pointer z-10"
+            >
+              ✕ Close
+            </button>
+            <div className="mt-2">
+              <DuplicateClusterVisualizer />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 4. Pan-India District & Ward Hierarchy Drilldown Modal */}
+      {isIndiaHierarchyOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
+          <div className="bg-[#0A192F] border border-amber-500/50 rounded-3xl max-w-5xl w-full p-4 sm:p-6 my-auto shadow-2xl relative">
+            <button
+              onClick={() => setIsIndiaHierarchyOpen(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 cursor-pointer z-10"
+            >
+              ✕ Close
+            </button>
+            <div className="mt-2">
+              <IndiaDistrictHierarchy />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 5. Live Disaster Simulation Engine Modal */}
+      <CrisisSimulationModal
+        isOpen={isCrisisSimulationOpen}
+        onClose={() => setIsCrisisSimulationOpen(false)}
+        onInjectReports={(newSimReports) => {
+          setReports((prev) => [...newSimReports, ...prev]);
+        }}
+        onNavigateToMap={(regionId) => {
+          setIsCrisisSimulationOpen(false);
+          setActiveTab('map');
+        }}
+        onNavigateToDPRStudio={(title, budgetM, sector) => {
+          setIsCrisisSimulationOpen(false);
+          setActiveTab('dpr-studio');
+        }}
+      />
+
+      {/* 6. Hackathon Evaluators Tour Guide Modal */}
+      <JudgesDemoGuideModal
+        isOpen={isJudgesGuideOpen}
+        onClose={() => setIsJudgesGuideOpen(false)}
+        onLaunchWhatsAppBot={() => {
+          setIsJudgesGuideOpen(false);
+          setIsWhatsAppBotOpen(true);
+        }}
+        onLaunchPolicyDebate={() => {
+          setIsJudgesGuideOpen(false);
+          setIsPolicyDebateOpen(true);
+        }}
+        onLaunchDuplicateInspector={() => {
+          setIsJudgesGuideOpen(false);
+          setIsDuplicateInspectorOpen(true);
+        }}
+        onLaunchIndiaHierarchy={() => {
+          setIsJudgesGuideOpen(false);
+          setIsIndiaHierarchyOpen(true);
+        }}
+        onLaunchCrisisSimulation={() => {
+          setIsJudgesGuideOpen(false);
+          setIsCrisisSimulationOpen(true);
+        }}
+        onNavigateToMap={() => {
+          setIsJudgesGuideOpen(false);
+          setActiveTab('map');
+        }}
+        onNavigateToDPRStudio={() => {
+          setIsJudgesGuideOpen(false);
+          setActiveTab('dpr-studio');
+        }}
       />
 
       {/* Official 10 BRICS Sovereign Member Footer */}

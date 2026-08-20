@@ -13,6 +13,8 @@ import {
   AI_INFRASTRUCTURE_INSIGHTS 
 } from '../../data/governanceData';
 import { GeospatialContaminationMap } from './GeospatialContaminationMap';
+import { DuplicateClusterVisualizer } from '../DuplicateClusterVisualizer';
+import { MinisterialPolicyDebate } from '../MinisterialPolicyDebate';
 import { 
   Building2, 
   ShieldCheck, 
@@ -35,7 +37,9 @@ import {
   UserX,
   Phone,
   Mail,
-  RefreshCw
+  RefreshCw,
+  Merge,
+  Scale
 } from 'lucide-react';
 
 interface AuthorityDashboardProps {
@@ -47,7 +51,7 @@ export const AuthorityDashboard: React.FC<AuthorityDashboardProps> = ({ onOpenDP
   const user = authState.user;
 
   // Tabs inside Authority Dashboard
-  const [activeTab, setActiveTab] = useState<'overview' | 'requests' | 'ai-insights' | 'user-mgmt'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'requests' | 'ai-insights' | 'deduplication' | 'policy-chamber' | 'user-mgmt'>('overview');
 
   // Governance Requests State
   const [requests, setRequests] = useState<CitizenServiceRequest[]>(INITIAL_CITIZEN_REQUESTS);
@@ -183,6 +187,8 @@ export const AuthorityDashboard: React.FC<AuthorityDashboardProps> = ({ onOpenDP
           {[
             { id: 'overview', label: 'GIS & Overview', icon: Layers },
             { id: 'requests', label: `Citizen Demands (${requests.length})`, icon: FileText },
+            { id: 'deduplication', label: 'Semantic Deduplication', icon: Merge },
+            { id: 'policy-chamber', label: 'Multi-Agent Policy Chamber', icon: Scale },
             { id: 'ai-insights', label: 'AI Infrastructure Plans', icon: Sparkles },
             { id: 'user-mgmt', label: `User Roles (${allUsers.length})`, icon: Users },
           ].map((tab) => {
@@ -575,7 +581,37 @@ export const AuthorityDashboard: React.FC<AuthorityDashboardProps> = ({ onOpenDP
         </div>
       )}
 
-      {/* TAB 4: USER ROLES & SECURITY AUDIT */}
+      {/* TAB 4: SEMANTIC DEDUPLICATION & CLUSTERING INSPECTOR */}
+      {activeTab === 'deduplication' && (
+        <div className="space-y-6">
+          <DuplicateClusterVisualizer />
+        </div>
+      )}
+
+      {/* TAB 5: GEMINI MULTI-AGENT MINISTERIAL POLICY CHAMBER */}
+      {activeTab === 'policy-chamber' && (
+        <div className="space-y-6">
+          <MinisterialPolicyDebate
+            initialComplaint={{
+              id: 'comp-chamber-1',
+              title: 'Major Subterranean Potable Water Conduit Breach & Arterial Inundation',
+              location: 'Ward 42 & Central Metro Junction, Pune, Maharashtra',
+              category: 'Water & Sanitation',
+              urgency: 'Critical',
+              estimatedBudgetUSD_M: 4.8,
+              affectedPop: 18500,
+              description: 'Primary 900mm feeder pipeline ruptured during metro tunneling, discharging 4,000 liters/minute onto arterial roads and cutting drinking water to 18,500 residents.'
+            }}
+            onApproveFunding={(summary, budgetM) => {
+              if (onOpenDPRStudio) {
+                onOpenDPRStudio('Subterranean Conduit Overhaul', budgetM, 'Water & Sanitation');
+              }
+            }}
+          />
+        </div>
+      )}
+
+      {/* TAB 6: USER ROLES & SECURITY AUDIT */}
       {activeTab === 'user-mgmt' && (
         <div className="bg-[#1E293B]/90 border border-[#1E3A8A] rounded-2xl p-6 shadow-2xl backdrop-blur-md space-y-5">
           <div className="flex items-center justify-between border-b border-[#334155] pb-4">
