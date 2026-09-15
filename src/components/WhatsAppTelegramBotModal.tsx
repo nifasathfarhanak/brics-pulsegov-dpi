@@ -180,115 +180,120 @@ export const WhatsAppTelegramBotModal: React.FC<WhatsAppTelegramBotModalProps> =
     setAttachedImage(null);
     setIsBotTyping(true);
 
-    // Simulate AI Processing & Gemini Grievance Triaging
-    setTimeout(() => {
-      // Determine category and parameters
-      let category = 'Water & Sanitation';
-      let urgency = 'High';
-      let slaDays = 7;
-      let department = 'Department of Public Health Engineering & Water Supply';
-      let regionId = 'ind_maharashtra';
-      let regionName = 'Maharashtra, India';
-      let beneficiaries = 4200;
-
-      const lower = rawText.toLowerCase();
-      if (lower.includes('बिजली') || lower.includes('மின்சாரம்') || lower.includes('solar') || lower.includes('light') || lower.includes('blackout')) {
-        category = 'Energy & Microgrids';
-        department = 'State Power Transmission & Renewable Energy Agency';
-        slaDays = 5;
-        urgency = 'Critical';
-        beneficiaries = 6800;
-        regionId = 'ind_tamilnadu';
-        regionName = 'Tamil Nadu, India';
-      } else if (lower.includes('पूल') || lower.includes('road') || lower.includes('bridge') || lower.includes('ponte') || lower.includes('रस्ता') || lower.includes('highway')) {
-        category = 'Transport & Connectivity';
-        department = 'Public Works Department (PWD) Highway Division';
-        slaDays = 10;
-        urgency = 'Critical';
-        beneficiaries = 12500;
-        regionId = 'ind_maharashtra';
-        regionName = 'Maharashtra, India';
-      } else if (lower.includes('बांध') || lower.includes('irrigation') || lower.includes('farm') || lower.includes('फसल') || lower.includes('कृषि')) {
-        category = 'Agricultural & Irrigation';
-        department = 'Command Area Development & Irrigation Board';
-        slaDays = 8;
-        beneficiaries = 8900;
-        regionId = 'ind_westbengal';
-        regionName = 'West Bengal, India';
-      } else if (lower.includes('clinic') || lower.includes('hospital') || lower.includes('आरोग्य') || lower.includes('स्वास्थ्य')) {
-        category = 'Health Infrastructure';
-        department = 'Directorate of Rural Health & Family Welfare';
-        slaDays = 3;
-        urgency = 'Critical';
-        beneficiaries = 9400;
-        regionId = 'ind_bihar';
-        regionName = 'Bihar, India';
+    // If it's a simple greeting or short message, act like a chat bot
+    const wordCount = rawText.trim().split(/\\s+/).length;
+    
+    // Check if the message contains obvious grievance keywords even if it's short
+    const lowerText = rawText.toLowerCase();
+    const hasGrievanceKeyword = 
+      lowerText.includes('water') || lowerText.includes('pani') || lowerText.includes('पानी') ||
+      lowerText.includes('road') || lowerText.includes('sarak') || lowerText.includes('सड़क') ||
+      lowerText.includes('power') || lowerText.includes('electricity') || lowerText.includes('bijli') || lowerText.includes('बिजली') ||
+      lowerText.includes('leak') || lowerText.includes('broken') || lowerText.includes('hole') || lowerText.includes('outage');
+      
+    const isSimpleMessage = wordCount <= 4 && !isVoice && !imageUrl && !hasGrievanceKeyword;
+    
+    if (isSimpleMessage) {
+      try {
+        const response = await fetch('/api/dialogflow-agent', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: rawText,
+            language: currentLang.name,
+            userLocation: 'India'
+          })
+        });
+        const result = await response.json();
+        const replyText = result.data?.reply || `Hello! I'm here to help you register public infrastructure issues. Could you please describe the issue in more detail?`;
+        
+        const greetingBotMsg: ChatMessage = {
+          id: `msg-bot-${Date.now()}`,
+          sender: 'bot',
+          text: replyText,
+          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          status: 'read',
+        };
+        setMessages(prev => [...prev, greetingBotMsg]);
+      } catch (err) {
+        console.error('Dialogflow fetch error:', err);
+      } finally {
+        setIsBotTyping(false);
       }
+      return;
+    }
 
-      const trackingToken = `IN-${regionId.split('_')[1]?.substring(0, 3).toUpperCase() || 'DPI'}-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-
-      let nativeBotReply = '';
-      if (/[\u0900-\u097F]/.test(rawText)) {
-        nativeBotReply = `✅ *शिकायत सफलतापूर्वक दर्ज! (Sovereign DPI)*\n\n📌 *ट्रैकिंग आईडी:* \`${trackingToken}\`\n🏛️ *विभाग:* ${department}\n⚡ *प्राथमिकता:* ${urgency}\n⏱️ *अनुमानित समाधान समय:* ${slaDays} कार्य दिवस (Vertex AI SLA)\n👥 *अनुमानित प्रभावित आबादी:* ${beneficiaries.toLocaleString()} नागरिक\n\n📍 आपकी शिकायत को लाइव GIS हॉटस्पॉट मानचित्र पर जोड़ दिया गया है। संबंधित कार्यपालक अभियंता को मौके पर निरीक्षण के निर्देश जारी कर दिए गए हैं।`;
-      } else if (/[\u0B80-\u0BFF]/.test(rawText)) {
-        nativeBotReply = `✅ *புகார் வெற்றிகரமாக பதிவு செய்யப்பட்டது! (Sovereign DPI)*\n\n📌 *பதிவு எண்:* \`${trackingToken}\`\n🏛️ *துறை:* ${department}\n⚡ *முன்னுரிமை:* ${urgency}\n⏱️ *தீர்வு காலம்:* ${slaDays} வேலை நாட்கள் (Vertex AI SLA)\n👥 *பாதிக்கப்பட்ட மக்கள்:* ${beneficiaries.toLocaleString()} குடிமக்கள்\n\n📍 உங்களின் புகார் நேரலை GIS வரைபடத்தில் இணைக்கப்பட்டுள்ளது. உதவி செயற்பொறியாளருக்கு அவசர பணி ஆணை பிறப்பிக்கப்பட்டுள்ளது.`;
-      } else if (/[\u0600-\u06FF]/.test(rawText)) {
-        nativeBotReply = `✅ *تم تسجيل البلاغ بنجاح! (PulseGov DPI)*\n\n📌 *رقم التتبع السيادي:* \`${trackingToken}\`\n🏛️ *الجهة المختصة:* ${department}\n⚡ *مستوى الأهمية:* ${urgency}\n⏱️ *المدة المتوقعة للإنجاز:* ${slaDays} أيام عمل\n👥 *عدد المستفيدين:* ${beneficiaries.toLocaleString()} مواطن\n\n📍 تم ربط البلاغ بالخريطة الجغرافية وتوجيه فرق الصيانة الميدانية للموقع فوراً.`;
-      } else {
-        nativeBotReply = `✅ *Grievance Registered Successfully! (Sovereign DPI)*\n\n📌 *Official Tracking Code:* \`${trackingToken}\`\n🏛️ *Assigned Authority:* ${department}\n⚡ *Triage Urgency:* ${urgency}\n⏱️ *Predicted SLA Resolution:* ${slaDays} Working Days\n👥 *Impact Scope:* ${beneficiaries.toLocaleString()} Residents\n\n📍 Your report has been pinned to the Live GIS Geospatial Map & dispatched to the Assistant Executive Engineer.`;
-      }
-
+    // Call backend API for AI Grievance Triaging
+    try {
+      const response = await fetch('/api/analyze-citizen-report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: rawText,
+          imageBase64: imageUrl ? 'dummy_base64_for_demo' : undefined,
+          country: 'India',
+          preferredLanguage: currentLang.name
+        })
+      });
+      const result = await response.json();
+      const data = result.data || {};
+      
+      const trackingToken = `IN-DPI-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+      const nativeBotReply = data.citizenReassuranceMessage || 'Grievance Registered Successfully.';
+      
       const botMsg: ChatMessage = {
         id: `msg-bot-${Date.now()}`,
         sender: 'bot',
-        text: nativeBotReply,
+        text: `✅ *Grievance Registered Successfully! (Sovereign DPI)*\n\n📌 *Official Tracking Code:* \`${trackingToken}\`\n🏛️ *Assigned Authority:* ${data.assignedDepartment || 'Municipal Council'}\n⚡ *Triage Urgency:* ${data.severityLevel || 'High'}\n⏱️ *Predicted SLA Resolution:* ${data.estimatedSlaDays || 7} Working Days\n👥 *Impact Scope:* ${data.estimatedAffectedPopulation?.toLocaleString() || 5000} Residents\n\n${nativeBotReply}`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         status: 'read',
         metadata: {
           trackingId: trackingToken,
-          slaDays,
-          category,
-          urgency,
-          department,
-          regionId,
-          regionName,
-          estimatedBeneficiaries: beneficiaries
+          slaDays: data.estimatedSlaDays || 7,
+          category: data.category || 'Public Works',
+          urgency: data.severityLevel || 'High',
+          department: data.assignedDepartment || 'Municipal Council',
+          regionId: 'ind_all',
+          regionName: 'India',
+          estimatedBeneficiaries: data.estimatedAffectedPopulation || 5000
         }
       };
 
       setMessages(prev => [...prev, botMsg]);
-      setIsBotTyping(false);
-
-      // Add to global live report state if callback provided
+      
       if (onAddReport) {
         const newCitizenReport: CitizenReport = {
           id: `rep-${Date.now()}`,
           token: trackingToken,
           countryId: 'india',
-          regionId: regionId,
-          regionName: regionName,
+          regionId: 'ind_all',
+          regionName: 'India',
           citizenNameOrAnon: 'Mobile Messaging Citizen (Verified)',
-          language: currentLang.name,
-          languageCode: currentLang.code,
+          language: data.detectedLanguage || currentLang.name,
+          languageCode: data.languageCode || currentLang.code,
           originalText: rawText,
-          englishTranslation: rawText,
-          category: category,
-          urgencyScore: urgency === 'Critical' ? 9 : 7,
-          severityLevel: urgency,
+          englishTranslation: data.englishTranslation || rawText,
+          category: data.category || 'Public Works',
+          urgencyScore: data.urgencyScore || 8,
+          severityLevel: data.severityLevel || 'High',
           status: 'Under Triage - Work Order Dispatched',
           timestamp: 'Just now',
-          estimatedAffectedPop: beneficiaries,
+          estimatedAffectedPop: data.estimatedAffectedPopulation || 5000,
           upvotes: 1,
           hasPhoto: !!imageUrl || !!attachedImage,
           imageUrl: imageUrl || (attachedImage || undefined),
           channel: platform === 'whatsapp' ? 'WhatsApp Citizen Bot' : platform === 'telegram' ? 'Telegram DPI Bot' : 'Gov SMS (Sandes)',
-          keyIssues: ['Subterranean infrastructure failure', 'Community access impairment'],
-          recommendedAction: `Deploy ${department} mobile repair unit within ${slaDays} days.`,
+          keyIssues: data.keyIssuesIdentified || [],
+          recommendedAction: data.recommendedAction || 'Dispatch municipal engineer immediately.',
           citizenReassuranceMessage: nativeBotReply
         };
         onAddReport(newCitizenReport);
       }
-    }, 1200);
+    } catch (err) {
+      console.error('Analyze report fetch error:', err);
+    } finally {
+      setIsBotTyping(false);
+    }
   };
 
   const handleCopyTrackingToken = (token: string) => {

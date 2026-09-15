@@ -69,43 +69,43 @@ export const HotspotsView: React.FC<HotspotsViewProps> = ({
   return (
     <div className="space-y-6">
       {/* Priority Scoring Engine Methodology Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold border border-amber-500/30">
+              <span className="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200">
                 Predictive AI Prioritization Engine
               </span>
-              <span className="text-xs font-mono text-slate-400">Model: Gemini 3.7 + Multi-Variable Econometric Weights</span>
+              <span className="text-xs font-mono text-slate-500">Model: Gemini 3.7 + Multi-Variable Econometric Weights</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
               Algorithmic Development Priority Ranking across BRICS
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-3xl mt-1">
+            <p className="text-xs sm:text-sm text-slate-600 max-w-3xl mt-1">
               Synthesizing fragmented citizen voices with national census vulnerability, infrastructure deficits, and fiscal ROI models to prevent misallocated public spending.
             </p>
           </div>
 
-          <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs font-mono text-slate-300 space-y-1">
-            <div className="text-[11px] text-sky-400 font-semibold uppercase tracking-wider">
+          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-mono text-slate-700 space-y-1">
+            <div className="text-[11px] text-blue-700 font-semibold uppercase tracking-wider">
               Priority Formula Weights:
             </div>
-            <div className="text-[11px] text-slate-400">
+            <div className="text-[11px] text-slate-500">
               Demand (25%) + Vulnerability (25%) + Infra Deficit (25%) + ROI (15%) + ESG (10%)
             </div>
           </div>
         </div>
 
         {/* Filters & Sorting Bar */}
-        <div className="pt-3 border-t border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <div className="pt-3 border-t border-slate-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
           {/* Country Selector */}
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
             <button
               onClick={() => setSelectedCountry('all')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors cursor-pointer ${
                 selectedCountry === 'all'
-                  ? 'bg-sky-500 text-white font-semibold'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  ? 'bg-blue-600 text-white font-semibold shadow-xs'
+                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
               All BRICS ({hotspots.length})
@@ -114,10 +114,10 @@ export const HotspotsView: React.FC<HotspotsViewProps> = ({
               <button
                 key={c.id}
                 onClick={() => setSelectedCountry(c.id)}
-                className={`px-2.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap flex items-center gap-1 transition-colors ${
+                className={`px-2.5 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap flex items-center gap-1 transition-colors cursor-pointer ${
                   selectedCountry === c.id
-                    ? 'bg-slate-100 text-slate-900 font-semibold shadow-md'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    ? 'bg-blue-600 text-white font-semibold shadow-xs'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
                 <span>{c.flag}</span>
@@ -128,11 +128,11 @@ export const HotspotsView: React.FC<HotspotsViewProps> = ({
 
           {/* Sort By Selector */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-slate-400 whitespace-nowrap">Sort by:</span>
+            <span className="text-xs text-slate-500 whitespace-nowrap">Sort by:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 text-xs text-slate-200 focus:outline-none focus:ring-2 focus:ring-sky-500"
+              className="bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-2xs"
             >
               <option value="priority">🔥 Highest Priority Score</option>
               <option value="demand">🗣️ Citizen Demand Volume</option>
@@ -152,20 +152,20 @@ export const HotspotsView: React.FC<HotspotsViewProps> = ({
           return (
             <div
               key={hotspot.id}
-              className="bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-5 shadow-lg flex flex-col justify-between space-y-4 transition-all"
+              className="bg-white border border-slate-200 hover:border-slate-300 rounded-2xl p-5 shadow-xs hover:shadow-md flex flex-col justify-between space-y-4 transition-all"
             >
               {/* Card Top: Rank Badge, Title, Sector */}
               <div className="space-y-3">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-start gap-2.5">
-                    <span className="w-7 h-7 rounded-lg bg-slate-800 text-amber-400 font-mono font-bold text-xs flex items-center justify-center border border-slate-700 shrink-0">
+                    <span className="w-7 h-7 rounded-lg bg-blue-50 text-blue-700 font-mono font-bold text-xs flex items-center justify-center border border-blue-200 shrink-0">
                       #{index + 1}
                     </span>
                     <div>
-                      <h3 className="text-sm sm:text-base font-bold text-slate-100 leading-snug">
+                      <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
                         {hotspot.title}
                       </h3>
-                      <div className="flex items-center gap-2 text-xs text-slate-400 mt-0.5">
+                      <div className="flex items-center gap-2 text-xs text-slate-500 mt-0.5">
                         <span>{country?.flag} {hotspot.regionName}</span>
                       </div>
                     </div>
@@ -173,47 +173,47 @@ export const HotspotsView: React.FC<HotspotsViewProps> = ({
 
                   {/* Priority Score Meter */}
                   <div className="text-right shrink-0">
-                    <div className="text-lg font-mono font-black text-amber-400">
-                      {hotspot.priorityScore.toFixed(1)}
+                    <div className="text-lg font-mono font-black text-blue-700">
+                      {(hotspot.priorityScore ?? 0).toFixed(1)}
                     </div>
-                    <div className="text-[10px] uppercase font-semibold text-slate-500">
+                    <div className="text-[10px] uppercase font-semibold text-slate-400">
                       Priority Index
                     </div>
                   </div>
                 </div>
 
                 {/* Summary Description */}
-                <p className="text-xs text-slate-300 leading-relaxed bg-slate-950/60 p-3 rounded-xl border border-slate-800/80">
+                <p className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl border border-slate-200">
                   {hotspot.summary}
                 </p>
 
                 {/* Indicator Metric Breakdown Bar */}
                 <div className="grid grid-cols-3 gap-2 text-center">
-                  <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                    <div className="text-[10px] text-slate-400">Citizen Demand</div>
-                    <div className="text-xs sm:text-sm font-bold text-amber-300 mt-0.5">
+                  <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                    <div className="text-[10px] text-slate-500">Citizen Demand</div>
+                    <div className="text-xs sm:text-sm font-bold text-amber-700 mt-0.5">
                       {hotspot.demandIntensity.toLocaleString()} voices
                     </div>
                   </div>
 
-                  <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                    <div className="text-[10px] text-slate-400">Estimated CapEx</div>
-                    <div className="text-xs sm:text-sm font-bold text-sky-300 mt-0.5">
+                  <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                    <div className="text-[10px] text-slate-500">Estimated CapEx</div>
+                    <div className="text-xs sm:text-sm font-bold text-blue-700 mt-0.5">
                       ${hotspot.estimatedBudgetM}M USD
                     </div>
                   </div>
 
-                  <div className="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                    <div className="text-[10px] text-slate-400">Socio-Econ ROI</div>
-                    <div className="text-xs sm:text-sm font-bold text-emerald-300 mt-0.5">
+                  <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
+                    <div className="text-[10px] text-slate-500">Socio-Econ ROI</div>
+                    <div className="text-xs sm:text-sm font-bold text-emerald-700 mt-0.5">
                       {hotspot.roiMultiplier}x Multiplier
                     </div>
                   </div>
                 </div>
 
                 {/* Digital Public Good (DPG) Architectural Recommendation */}
-                <div className="bg-sky-950/20 border border-sky-800/40 rounded-xl p-2.5 text-xs text-sky-200">
-                  <span className="font-semibold text-sky-400 block mb-0.5 flex items-center gap-1">
+                <div className="bg-blue-50/70 border border-blue-200 rounded-xl p-2.5 text-xs text-blue-900">
+                  <span className="font-semibold text-blue-700 block mb-0.5 flex items-center gap-1">
                     <Sparkles className="w-3 h-3" />
                     Recommended Digital Public Infrastructure (DPI) Rail:
                   </span>
@@ -223,7 +223,7 @@ export const HotspotsView: React.FC<HotspotsViewProps> = ({
                 {/* SDG Tags */}
                 <div className="flex flex-wrap gap-1.5">
                   {hotspot.unSdgs.map((sdg, i) => (
-                    <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
+                    <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200 font-medium">
                       {sdg}
                     </span>
                   ))}
@@ -231,19 +231,19 @@ export const HotspotsView: React.FC<HotspotsViewProps> = ({
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center justify-between gap-3 pt-3 border-t border-slate-800">
+              <div className="flex items-center justify-between gap-3 pt-3 border-t border-slate-100">
                 <button
                   onClick={() => regionObj && onOpenBudgetSimulator(regionObj)}
-                  className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg border border-slate-700 flex items-center gap-1.5 transition-colors"
+                  className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg border border-slate-200 flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
-                  <DollarSign className="w-3.5 h-3.5 text-emerald-400" />
+                  <DollarSign className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Simulate Budget</span>
                 </button>
 
                 <button
                   id={`hotspot-btn-generate-dpr-${hotspot.id}`}
                   onClick={() => onGenerateDPR(hotspot)}
-                  className="px-4 py-2 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white text-xs font-bold rounded-lg shadow-md shadow-indigo-500/20 flex items-center gap-1.5 transition-all active:scale-95"
+                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow-sm hover:shadow flex items-center gap-1.5 transition-all cursor-pointer active:scale-95"
                 >
                   <FileText className="w-3.5 h-3.5" />
                   <span>Synthesize AI DPR</span>
